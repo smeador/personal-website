@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
+import { EmailIcon, LinkedInIcon, SubstackIcon, GitHubIcon } from '../icons';
 
 export default function Hero() {
   return (
-    <section className="pt-8 pb-20 px-4">
-      <div className="container mx-auto max-w-5xl">
+    <section className="pt-8 pb-20">
+      <div className="container mx-auto max-w-5xl px-4">
         {/* Two-column hero layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[400px]">
           
@@ -81,30 +82,30 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
           className="mt-20"
         >
-          <h2 className="section-title mb-8">contact.</h2>
+          <h2 className="section-title mb-8">connect.</h2>
           <div className="space-y-4 text-left">
             <div className="flex items-center space-x-3">
-              <span className="text-muted-foreground">📧</span>
-              <a href="mailto:sean@example.com" className="text-lg text-foreground hover:text-coral transition-colors">
-                sean@example.com
+              <EmailIcon className="w-5 h-5 text-coral" />
+              <a href="mailto:sean@meador.me" className="text-lg text-foreground hover:text-coral transition-colors">
+                sean@meador.me
               </a>
             </div>
             <div className="flex items-center space-x-3">
-              <span className="text-muted-foreground">📱</span>
-              <a href="tel:+15551234567" className="text-lg text-foreground hover:text-coral transition-colors">
-                +1 (555) 123-4567
-              </a>
-            </div>
-            <div className="flex items-center space-x-3">
-              <span className="text-muted-foreground">💼</span>
+              <LinkedInIcon className="w-5 h-5 text-coral" />
               <a href="https://linkedin.com/in/seanmeador" target="_blank" rel="noopener noreferrer" className="text-lg text-foreground hover:text-coral transition-colors">
-                LinkedIn
+                seanmeador
               </a>
             </div>
             <div className="flex items-center space-x-3">
-              <span className="text-muted-foreground">🏠</span>
-              <a href="/portfolio" className="text-lg text-foreground hover:text-coral transition-colors">
-                Portfolio
+              <SubstackIcon className="w-5 h-5 text-coral" />
+              <a href="https://substack.com/@smeador" target="_blank" rel="noopener noreferrer" className="text-lg text-foreground hover:text-coral transition-colors">
+                @smeador
+              </a>
+            </div>
+            <div className="flex items-center space-x-3">
+              <GitHubIcon className="w-5 h-5 text-coral" />
+              <a href="https://github.com/smeador" target="_blank" rel="noopener noreferrer" className="text-lg text-foreground hover:text-coral transition-colors">
+                smeador
               </a>
             </div>
           </div>

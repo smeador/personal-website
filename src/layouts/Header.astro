@@ -3,7 +3,7 @@ const currentPath = Astro.url.pathname;
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-  <nav class="container mx-auto px-4 h-16 flex items-center justify-between">
+  <nav class="container mx-auto max-w-5xl px-4 h-16 flex items-center justify-between">
     <!-- Logo/Name -->
     <a href="/" class="text-xl font-bold text-foreground hover:text-primary transition-colors">
       Sean Meador
@@ -27,14 +27,15 @@ const currentPath = Astro.url.pathname;
       >
         Writing
       </a>
-      <a 
+      <!-- Portfolio temporarily hidden until fully implemented -->
+      <!-- <a 
         href="/portfolio" 
         class={`text-sm font-medium transition-colors hover:text-primary ${
           currentPath === '/portfolio' ? 'text-primary' : 'text-muted-foreground'
         }`}
       >
         Portfolio
-      </a>
+      </a> -->
       <a 
         href="/experience" 
         class={`text-sm font-medium transition-colors hover:text-primary ${
@@ -59,7 +60,7 @@ const currentPath = Astro.url.pathname;
   
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="hidden md:hidden border-t border-border bg-background/95 backdrop-blur-md">
-    <div class="container mx-auto px-4 py-4 space-y-4">
+    <div class="container mx-auto max-w-5xl px-4 py-4 space-y-4">
       <a 
         href="/" 
         class={`block text-sm font-medium transition-colors hover:text-primary ${
@@ -76,14 +77,15 @@ const currentPath = Astro.url.pathname;
       >
         Writing
       </a>
-      <a 
+      <!-- Portfolio temporarily hidden until fully implemented -->
+      <!-- <a 
         href="/portfolio" 
         class={`block text-sm font-medium transition-colors hover:text-primary ${
           currentPath === '/portfolio' ? 'text-primary' : 'text-muted-foreground'
         }`}
       >
         Portfolio
-      </a>
+      </a> -->
       <a 
         href="/experience" 
         class={`block text-sm font-medium transition-colors hover:text-primary ${

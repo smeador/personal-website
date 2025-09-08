@@ -74,35 +74,42 @@ Build a modern, performant personal portfolio website that showcases writing, pr
 
 ### 1. Navigation Header (Global)
 - **Position**: Fixed at top, with backdrop blur on scroll
-- **Links**: Home, Writing, Portfolio, Experience
+- **Container**: max-w-5xl container matching main content width
+- **Links**: Home, Writing, Experience (Portfolio temporarily hidden)
 - **Style**: Minimal, clean, with subtle hover animations
-- **Mobile**: Responsive hamburger menu
+- **Mobile**: Responsive hamburger menu with consistent container width
 - **Active state**: Highlight current page
 
 ### 2. Home Page
+**Layout**: Two-column responsive design (stacks on mobile at md breakpoint)
+
 **Components:**
 - **Hero Section**:
-  - Circular profile image (animated entrance - fade in + scale)
-  - Name as H1: "Sean Meador"  
-  - Title/tagline: "Software Engineer & Writer"
-  - Brief introduction paragraph (2-3 sentences)
-  - Subtle gradient background pattern
+  - **Left column**: Introduction text with "Hello, I'm Sean, **Engineering Leader**, based in Austin, TX" (customizable title)
+  - **Right column**: Large circular profile image (264x264px) with organic gradient background blur
+  - Clean, minimal design with coral accent colors
+  - Bold typography with Engineering Leader emphasized in coral
   
-- **Social Links**:
-  - Icons for: LinkedIn, Substack, X (Twitter), GitHub
-  - Hover animations (scale + color change)
-  - Open in new tabs
+- **About Section**:
+  - Full-width section below hero
+  - Professional description of engineering leadership experience
+  - Left-aligned content with consistent margins
   
-- **Quick Navigation Cards**:
-  - Three cards linking to main sections
-  - Brief description of each section
-  - Hover effect with slight lift
+- **Connect Section**:
+  - Custom SVG icons (not emojis) for each platform
+  - Email: sean@meador.me
+  - Social links displayed as usernames: seanmeador (LinkedIn), @smeador (Substack), smeador (GitHub)
+  - Vertically stacked, left-aligned layout
+  - Icons styled in coral color with hover effects
+
+**Removed Elements**:
+- Quick Navigation Cards section (removed for cleaner focus)
+- Geometric accent shapes (removed - too busy)
 
 **Animations**:
-- Stagger animation on page load for elements
-- Smooth scroll behavior
-- Framer Motion animations throughout (fade-in, scale, stagger)
-- Subtle hover effects on interactive elements
+- Stagger animation on page load for hero elements
+- Profile image with organic background shape animation
+- Smooth scroll behavior and hover effects throughout
 
 ### 3. Writing Page
 **Features:**
@@ -196,23 +203,50 @@ technologies: ["Python", "AWS", "React"]
 ## Design System
 
 ### Colors
+**Theme**: Warm, professional color palette blending fun and edgy design inspirations
+
 ```css
 :root {
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
-  --primary: 221.2 83.2% 53.3%;
-  --secondary: 210 40% 96.1%;
-  --accent: 210 40% 96.1%;
-  --muted: 210 40% 96.1%;
-  --radius: 0.5rem;
+  /* Warm, professional base colors */
+  --background: 35 25% 97%; /* Soft cream background */
+  --foreground: 220 15% 15%; /* Deep charcoal for text */
+  --card: 0 0% 100%;
+  --card-foreground: 220 15% 15%;
+  
+  /* Coral accent inspired by fun design */
+  --primary: 15 85% 60%; /* Vibrant coral */
+  --primary-foreground: 0 0% 100%;
+  
+  /* Warm secondary colors */
+  --secondary: 25 30% 90%; /* Warm light beige */
+  --secondary-foreground: 220 15% 15%;
+  --muted: 30 20% 88%; /* Subtle warm gray */
+  --muted-foreground: 220 10% 45%;
+  
+  --radius: 0.75rem; /* Slightly more rounded */
+  
+  /* Custom accent colors for design elements */
+  --accent-coral: 15 85% 60%;
+  --accent-peach: 25 70% 75%;
+  --accent-cream: 35 40% 85%;
+  --accent-blue: 200 50% 70%;
+  --accent-navy: 220 40% 25%;
 }
 
 .dark {
-  --background: 222.2 84% 4.9%;
-  --foreground: 210 40% 98%;
-  /* ... other dark mode colors */
+  --background: 220 20% 8%; /* Rich dark background */
+  --foreground: 35 25% 95%;
+  --primary: 15 75% 65%; /* Brighter coral for dark mode */
+  --primary-foreground: 220 20% 8%;
+  /* ... full dark mode support */
 }
 ```
+
+**Design Philosophy**: 
+- Warm cream base creates approachable feel
+- Coral accents add energy and personality  
+- Professional navy for structured elements
+- Balanced between playful and sophisticated
 
 ### Typography
 - **Font**: System font stack with Inter as primary
@@ -463,32 +497,43 @@ PUBLIC_VERCEL_ANALYTICS_ID=your-analytics-id
 - View transitions API
 - i18n support
 
-## Implementation Status ✅ COMPLETE
+## Implementation Status ✅ UPDATED & ENHANCED
 
-The website has been successfully implemented with all core features:
+The website has been successfully implemented and recently updated with enhanced design and functionality:
 
 ### ✅ Completed Features
-1. **All pages implemented and functional** - Home, Writing, Portfolio, Experience
-2. **Pagefind search integration** - Static search with build-time indexing
-3. **Mobile responsive design** - Tested across breakpoints (320px, 768px, 1024px+)
-4. **Framer Motion animations** - Smooth, accessible animations throughout
-5. **Content collections** - Type-safe MDX content management
-6. **shadcn/ui design system** - Consistent component library
-7. **Personal branding** - Sean Meador name and contact information
-8. **Astro best practices** - Layouts in `/src/layouts/`, optimized architecture
+1. **Enhanced home page design** - Two-column layout with Design-Fun inspiration
+2. **New warm color palette** - Coral accents with cream/beige base colors
+3. **Professional contact section** - Custom SVG icons, real contact information
+4. **Improved responsive design** - Better mobile breakpoints and footer layout
+5. **Consistent container widths** - max-w-5xl across all pages, header, and footer for unified layout
+6. **Real contact information** - sean@meador.me, correct social handles (@smeador)
+7. **Pagefind search integration** - Static search with build-time indexing
+8. **Content collections** - Type-safe MDX content management
+9. **shadcn/ui design system** - Enhanced with custom coral color scheme
+10. **Astro best practices** - Optimized architecture with clean layouts
 
-### 📝 Ready for Customization
-- Add real profile image to `/public/images/profile.jpg`
+### 🎨 Design Enhancements (Recent Updates)
+- **Hybrid design system** - Blends fun warmth with professional elegance
+- **Custom typography** - Bold, impactful headings with coral accents
+- **Organic profile image styling** - Gradient background blur effects
+- **Enhanced footer** - Properly centered social icons with mobile stacking
+- **Removed clutter** - Eliminated geometric shapes and navigation cards for cleaner focus
+- **Aligned containers** - Fixed padding structure so header, footer, and content align perfectly
+- **Reusable icon components** - Extracted SVG icons into separate components for better maintainability
+
+### 📝 Ready for Content
+- Add real profile image to `/public/images/profile.jpg` 
 - Add project screenshots to `/public/images/projects/`
 - Replace sample content with real articles and projects
-- Update contact email from `example.com` to real domain
 - Add real resume PDF to `/public/resume.pdf`
 
 ### 🚀 Development Status
-- **Local development**: Fully functional at `http://localhost:4322/`
+- **Local development**: Fully functional at `http://localhost:4323/`
 - **Production builds**: Successfully generating static files
 - **Search indexing**: Working with Pagefind v1.4.0
 - **Type safety**: Full TypeScript support with strict mode
+- **Real contact info**: sean@meador.me, @smeador handles configured
 
 ## Original Success Criteria
 
