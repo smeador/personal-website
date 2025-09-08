@@ -43,7 +43,7 @@ const featuredProjects = sortedProjects.filter(project => project.data.featured)
   <!-- Featured Projects -->
   {featuredProjects.length > 0 && (
     <section class="py-16 px-4">
-      <div class="container mx-auto max-w-6xl">
+      <div class="container mx-auto max-w-5xl">
         <h2 class="text-3xl font-bold text-foreground mb-12 text-center">
           Featured Projects
         </h2>
@@ -62,7 +62,7 @@ const featuredProjects = sortedProjects.filter(project => project.data.featured)
 
   <!-- Projects by Category -->
   <section class="py-16 px-4">
-    <div class="container mx-auto max-w-6xl">
+    <div class="container mx-auto max-w-5xl">
       {Object.entries(projectsByCategory).map(([category, projects], categoryIndex) => (
         <div class="mb-16 last:mb-0">
           <h2 class="text-2xl font-bold text-foreground mb-8 text-center">

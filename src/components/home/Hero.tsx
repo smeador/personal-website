@@ -2,58 +2,113 @@ import { motion } from 'framer-motion';
 
 export default function Hero() {
   return (
-    <section className="py-20 px-4">
-      <div className="container mx-auto max-w-4xl">
-        <div className="text-center space-y-8">
-          {/* Profile Image */}
+    <section className="pt-8 pb-20 px-4">
+      <div className="container mx-auto max-w-5xl">
+        {/* Two-column hero layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[400px]">
+          
+          {/* Left side - Text content */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="space-y-6 text-left"
+          >
+            <div className="space-y-2">
+              <p className="text-2xl md:text-3xl lg:text-4xl text-foreground font-medium">
+                Hello, I'm Sean,
+              </p>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-coral tracking-tight leading-tight">
+                Engineering Leader
+              </h1>
+              <p className="text-xl md:text-2xl text-muted-foreground font-medium">
+                based in Austin, TX.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Right side - Profile image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             className="flex justify-center"
           >
             <div className="relative">
+              {/* Organic background shape */}
+              <motion.div
+                initial={{ opacity: 0, rotate: 180, scale: 0.8 }}
+                animate={{ opacity: 0.3, rotate: 0, scale: 1 }}
+                transition={{ duration: 1, delay: 0.4 }}
+                className="absolute inset-0 w-72 h-72 bg-gradient-to-br from-coral/20 via-peach/30 to-cream/40 rounded-full blur-lg -z-10 transform -translate-x-4 -translate-y-4"
+              />
               <img
                 src="/images/profile.jpg"
                 alt="Sean Meador"
-                className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-border shadow-lg"
+                className="w-64 h-64 rounded-full object-cover border-4 border-white shadow-xl relative z-10"
                 onError={(e) => {
                   // Fallback if image doesn't exist
-                  e.currentTarget.src = "data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='160' height='160' fill='%23f1f5f9'/%3E%3Cpath d='M80 80m-30 0a30 30 0 1 0 60 0a30 30 0 1 0 -60 0' fill='%23cbd5e1'/%3E%3Cpath d='M80 95c-16.569 0-30 13.431-30 30v35h60v-35c0-16.569-13.431-30-30-30z' fill='%23cbd5e1'/%3E%3C/svg%3E";
+                  e.currentTarget.src = "data:image/svg+xml,%3Csvg width='256' height='256' viewBox='0 0 256 256' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='256' height='256' fill='%23f1f5f9'/%3E%3Cpath d='M128 128m-48 0a48 48 0 1 0 96 0a48 48 0 1 0 -96 0' fill='%23cbd5e1'/%3E%3Cpath d='M128 152c-26.51 0-48 21.49-48 48v56h96v-56c0-26.51-21.49-48-48-48z' fill='%23cbd5e1'/%3E%3C/svg%3E";
                 }}
               />
             </div>
           </motion.div>
-
-          {/* Name and Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-            className="space-y-4"
-          >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
-              Sean Meador
-            </h1>
-            <p className="text-xl md:text-2xl text-primary font-medium">
-              Software Engineer & Writer
-            </p>
-          </motion.div>
-
-          {/* Introduction */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
-            className="max-w-2xl mx-auto"
-          >
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              I build elegant, performant web applications and write about the intersection 
-              of technology and human experience. Passionate about creating digital solutions 
-              that make a meaningful impact.
-            </p>
-          </motion.div>
         </div>
+
+        {/* About section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+          className="mt-20"
+        >
+          <h2 className="section-title mb-8">about.</h2>
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-medium">
+            I am a devoted engineering leader who excels at building high-performing teams and scalable systems. 
+            My collaborative approach and strategic thinking make me a valuable partner in complex technical environments. 
+            Driven by a passion for innovation and an insatiable hunger for knowledge, I thrive on solving challenging 
+            problems and mentoring the next generation of engineers. My leadership philosophy emphasizes fostering 
+            creativity and technical excellence, and my affinity for emerging technologies continually shapes my 
+            approach to engineering. I invite you to explore my work so we can discover how our skills complement 
+            each other and achieve remarkable success in the realm of technology.
+          </p>
+        </motion.div>
+
+        {/* Contact section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+          className="mt-20"
+        >
+          <h2 className="section-title mb-8">contact.</h2>
+          <div className="space-y-4 text-left">
+            <div className="flex items-center space-x-3">
+              <span className="text-muted-foreground">📧</span>
+              <a href="mailto:sean@example.com" className="text-lg text-foreground hover:text-coral transition-colors">
+                sean@example.com
+              </a>
+            </div>
+            <div className="flex items-center space-x-3">
+              <span className="text-muted-foreground">📱</span>
+              <a href="tel:+15551234567" className="text-lg text-foreground hover:text-coral transition-colors">
+                +1 (555) 123-4567
+              </a>
+            </div>
+            <div className="flex items-center space-x-3">
+              <span className="text-muted-foreground">💼</span>
+              <a href="https://linkedin.com/in/seanmeador" target="_blank" rel="noopener noreferrer" className="text-lg text-foreground hover:text-coral transition-colors">
+                LinkedIn
+              </a>
+            </div>
+            <div className="flex items-center space-x-3">
+              <span className="text-muted-foreground">🏠</span>
+              <a href="/portfolio" className="text-lg text-foreground hover:text-coral transition-colors">
+                Portfolio
+              </a>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

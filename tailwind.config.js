@@ -46,6 +46,19 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Custom accent colors for design elements
+        coral: "hsl(var(--accent-coral))",
+        peach: "hsl(var(--accent-peach))",
+        cream: "hsl(var(--accent-cream))",
+        blue: "hsl(var(--accent-blue))",
+        navy: "hsl(var(--accent-navy))",
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
+      fontSize: {
+        'display': ['5rem', { lineHeight: '1', letterSpacing: '-0.02em' }],
+        'hero': ['3.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
       },
       borderRadius: {
         lg: "var(--radius)",
