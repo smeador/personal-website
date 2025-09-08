@@ -1,0 +1,115 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+  <nav class="container mx-auto px-4 h-16 flex items-center justify-between">
+    <!-- Logo/Name -->
+    <a href="/" class="text-xl font-bold text-foreground hover:text-primary transition-colors">
+      Sean Meador
+    </a>
+    
+    <!-- Navigation Links - Desktop -->
+    <div class="hidden md:flex items-center space-x-8">
+      <a 
+        href="/" 
+        class={`text-sm font-medium transition-colors hover:text-primary ${
+          currentPath === '/' ? 'text-primary' : 'text-muted-foreground'
+        }`}
+      >
+        Home
+      </a>
+      <a 
+        href="/writing" 
+        class={`text-sm font-medium transition-colors hover:text-primary ${
+          currentPath.startsWith('/writing') ? 'text-primary' : 'text-muted-foreground'
+        }`}
+      >
+        Writing
+      </a>
+      <a 
+        href="/portfolio" 
+        class={`text-sm font-medium transition-colors hover:text-primary ${
+          currentPath === '/portfolio' ? 'text-primary' : 'text-muted-foreground'
+        }`}
+      >
+        Portfolio
+      </a>
+      <a 
+        href="/experience" 
+        class={`text-sm font-medium transition-colors hover:text-primary ${
+          currentPath === '/experience' ? 'text-primary' : 'text-muted-foreground'
+        }`}
+      >
+        Experience
+      </a>
+    </div>
+    
+    <!-- Mobile Menu Button -->
+    <button 
+      class="md:hidden p-2 text-muted-foreground hover:text-primary transition-colors"
+      id="mobile-menu-button"
+      aria-label="Toggle mobile menu"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </nav>
+  
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-border bg-background/95 backdrop-blur-md">
+    <div class="container mx-auto px-4 py-4 space-y-4">
+      <a 
+        href="/" 
+        class={`block text-sm font-medium transition-colors hover:text-primary ${
+          currentPath === '/' ? 'text-primary' : 'text-muted-foreground'
+        }`}
+      >
+        Home
+      </a>
+      <a 
+        href="/writing" 
+        class={`block text-sm font-medium transition-colors hover:text-primary ${
+          currentPath.startsWith('/writing') ? 'text-primary' : 'text-muted-foreground'
+        }`}
+      >
+        Writing
+      </a>
+      <a 
+        href="/portfolio" 
+        class={`block text-sm font-medium transition-colors hover:text-primary ${
+          currentPath === '/portfolio' ? 'text-primary' : 'text-muted-foreground'
+        }`}
+      >
+        Portfolio
+      </a>
+      <a 
+        href="/experience" 
+        class={`block text-sm font-medium transition-colors hover:text-primary ${
+          currentPath === '/experience' ? 'text-primary' : 'text-muted-foreground'
+        }`}
+      >
+        Experience
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  mobileMenuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+  
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!mobileMenuButton?.contains(e.target as Node) && 
+        !mobileMenu?.contains(e.target as Node)) {
+      mobileMenu?.classList.add('hidden');
+    }
+  });
+</script>

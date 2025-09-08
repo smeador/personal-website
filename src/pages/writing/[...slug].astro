@@ -1,0 +1,145 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Badge } from '../../components/ui/badge';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  
+  return articles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await article.render();
+const { title, date, excerpt, tags, readingTime, featured } = article.data;
+---
+
+<BaseLayout title={title} description={excerpt}>
+  <article class="py-16 px-4" data-pagefind-body>
+    <div class="container mx-auto max-w-4xl">
+      <!-- Article Header -->
+      <header class="text-center mb-12" data-pagefind-meta="title,excerpt,tags">
+        <div class="mb-6">
+          <a 
+            href="/writing" 
+            class="inline-flex items-center text-sm text-muted-foreground hover:text-primary transition-colors"
+          >
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+            Back to Writing
+          </a>
+        </div>
+        
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight">
+          {title}
+        </h1>
+        
+        <div class="flex items-center justify-center gap-4 text-muted-foreground text-sm mb-6">
+          <time datetime={date.toISOString()}>
+            {date.toLocaleDateString('en-US', { 
+              year: 'numeric', 
+              month: 'long', 
+              day: 'numeric' 
+            })}
+          </time>
+          <span>•</span>
+          <span>{readingTime}</span>
+          {featured && (
+            <>
+              <span>•</span>
+              <Badge variant="secondary" className="text-xs">
+                Featured
+              </Badge>
+            </>
+          )}
+        </div>
+        
+        {tags && tags.length > 0 && (
+          <div class="flex flex-wrap justify-center gap-2">
+            {tags.map((tag) => (
+              <Badge variant="outline" className="text-xs">
+                {tag}
+              </Badge>
+            ))}
+          </div>
+        )}
+      </header>
+
+      <!-- Article Content -->
+      <div class="prose prose-lg prose-slate dark:prose-invert max-w-none">
+        <Content />
+      </div>
+
+      <!-- Article Footer -->
+      <footer class="mt-16 pt-8 border-t border-border">
+        <div class="text-center">
+          <p class="text-muted-foreground mb-4">
+            Thanks for reading! Share your thoughts or questions.
+          </p>
+          <div class="flex justify-center space-x-4">
+            <a 
+              href="https://x.com/seanmeador" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              Discuss on X
+            </a>
+            <span class="text-muted-foreground">•</span>
+            <a 
+              href="mailto:sean.meador@example.com?subject=Re: {title}"
+              class="text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              Send feedback
+            </a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  /* Custom prose styling to match our design system */
+  .prose {
+    color: hsl(var(--foreground));
+  }
+  
+  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+    color: hsl(var(--foreground));
+  }
+  
+  .prose a {
+    color: hsl(var(--primary));
+    text-decoration: none;
+  }
+  
+  .prose a:hover {
+    text-decoration: underline;
+  }
+  
+  .prose blockquote {
+    border-left-color: hsl(var(--border));
+    color: hsl(var(--muted-foreground));
+  }
+  
+  .prose code {
+    background-color: hsl(var(--muted));
+    color: hsl(var(--foreground));
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+  }
+  
+  .prose pre {
+    background-color: hsl(var(--muted));
+    border: 1px solid hsl(var(--border));
+  }
+  
+  .prose pre code {
+    background-color: transparent;
+  }
+</style>

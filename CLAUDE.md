@@ -15,7 +15,8 @@ This is a personal portfolio website that represents professional brand and expe
 **Working approach:**
 - Follow the detailed spec in `personal-website-claude.spec.md` as primary guidance
 - **Provide feedback** if aspects of the spec don't make sense or could be improved
-- **Keep the spec updated** as we make decisions and changes during implementation
+- **CRITICAL: Always update the spec file** when making architectural, feature, or implementation changes
+- **Spec maintenance is mandatory** - treat it as living documentation that must stay current
 - Focus on getting the site working locally first - ignore deployment and publishing concerns initially
 - **Ignore "Future Enhancements"** section entirely for now - focus on MVP only
 

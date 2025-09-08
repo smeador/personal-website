@@ -1,0 +1,123 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/portfolio/ProjectCard.tsx';
+
+// Get all projects and sort by date (newest first)
+const allProjects = await getCollection('projects');
+const sortedProjects = allProjects.sort((a, b) => 
+  b.data.date.getTime() - a.data.date.getTime()
+);
+
+// Group projects by category
+const projectsByCategory = sortedProjects.reduce((acc, project) => {
+  const category = project.data.category;
+  if (!acc[category]) {
+    acc[category] = [];
+  }
+  acc[category].push(project);
+  return acc;
+}, {} as Record<string, typeof sortedProjects>);
+
+// Get featured projects
+const featuredProjects = sortedProjects.filter(project => project.data.featured);
+---
+
+<BaseLayout 
+  title="Portfolio - Sean Meador" 
+  description="Discover the projects and applications I've built, showcasing modern web development techniques and creative solutions."
+>
+  <!-- Hero Section -->
+  <section class="py-16 px-4">
+    <div class="container mx-auto max-w-4xl text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-foreground mb-4">
+        Portfolio
+      </h1>
+      <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+        A collection of projects that demonstrate my passion for building elegant, 
+        performant applications with modern technologies
+      </p>
+    </div>
+  </section>
+
+  <!-- Featured Projects -->
+  {featuredProjects.length > 0 && (
+    <section class="py-16 px-4">
+      <div class="container mx-auto max-w-6xl">
+        <h2 class="text-3xl font-bold text-foreground mb-12 text-center">
+          Featured Projects
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {featuredProjects.map((project, index) => (
+            <ProjectCard 
+              project={project} 
+              index={index}
+              client:load 
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Projects by Category -->
+  <section class="py-16 px-4">
+    <div class="container mx-auto max-w-6xl">
+      {Object.entries(projectsByCategory).map(([category, projects], categoryIndex) => (
+        <div class="mb-16 last:mb-0">
+          <h2 class="text-2xl font-bold text-foreground mb-8 text-center">
+            {category}
+          </h2>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <ProjectCard 
+                project={project} 
+                index={index}
+                client:load 
+              />
+            ))}
+          </div>
+        </div>
+      ))}
+      
+      {sortedProjects.length === 0 && (
+        <div class="text-center py-16">
+          <div class="text-6xl mb-4">🚀</div>
+          <h3 class="text-xl font-semibold text-foreground mb-2">
+            Projects coming soon
+          </h3>
+          <p class="text-muted-foreground">
+            I'm currently working on some exciting projects that will be featured here.
+          </p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-16 px-4 bg-muted/30">
+    <div class="container mx-auto max-w-4xl text-center">
+      <h2 class="text-2xl md:text-3xl font-bold text-foreground mb-4">
+        Interested in working together?
+      </h2>
+      <p class="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+        I'm always open to discussing new opportunities, collaborations, 
+        or interesting projects. Let's build something amazing together.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a 
+          href="mailto:sean.meador@example.com"
+          class="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
+        >
+          Get in touch
+        </a>
+        <a 
+          href="/experience"
+          class="px-6 py-3 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors font-medium"
+        >
+          View experience
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

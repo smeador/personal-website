@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Timeline from '../components/experience/Timeline.tsx';
+import DownloadResume from '../components/experience/DownloadResume.tsx';
+import Skills from '../components/experience/Skills.tsx';
+---
+
+<BaseLayout 
+  title="Experience - Sean Meador" 
+  description="Explore my professional journey, technical expertise, and the impact I've made throughout my career in software engineering."
+>
+  <!-- Hero Section -->
+  <section class="py-16 px-4">
+    <div class="container mx-auto max-w-4xl text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-foreground mb-4">
+        Experience
+      </h1>
+      <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+        My professional journey in software engineering, from early career foundations 
+        to leading complex technical initiatives
+      </p>
+    </div>
+  </section>
+
+  <!-- Professional Timeline -->
+  <section class="py-16 px-4">
+    <div class="container mx-auto max-w-6xl">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-foreground mb-4">
+          Professional Timeline
+        </h2>
+        <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+          Click on any position to learn more about my responsibilities, 
+          achievements, and the technologies I worked with
+        </p>
+      </div>
+      
+      <Timeline client:load />
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <Skills client:load />
+
+  <!-- Resume Download -->
+  <section class="py-16 px-4">
+    <div class="container mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-foreground mb-4">
+          Get the Full Picture
+        </h2>
+        <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+          While this timeline covers the highlights, there's much more to discover 
+          about my background, projects, and accomplishments
+        </p>
+      </div>
+      
+      <DownloadResume client:load />
+    </div>
+  </section>
+
+  <!-- Career Stats -->
+  <section class="py-16 px-4 bg-muted/30">
+    <div class="container mx-auto max-w-4xl">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div class="space-y-2">
+          <div class="text-3xl md:text-4xl font-bold text-primary">5+</div>
+          <div class="text-sm text-muted-foreground">Years Experience</div>
+        </div>
+        <div class="space-y-2">
+          <div class="text-3xl md:text-4xl font-bold text-primary">20+</div>
+          <div class="text-sm text-muted-foreground">Projects Delivered</div>
+        </div>
+        <div class="space-y-2">
+          <div class="text-3xl md:text-4xl font-bold text-primary">100k+</div>
+          <div class="text-sm text-muted-foreground">Users Impacted</div>
+        </div>
+        <div class="space-y-2">
+          <div class="text-3xl md:text-4xl font-bold text-primary">3</div>
+          <div class="text-sm text-muted-foreground">Teams Led</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-16 px-4">
+    <div class="container mx-auto max-w-4xl text-center">
+      <h2 class="text-2xl md:text-3xl font-bold text-foreground mb-4">
+        Ready to work together?
+      </h2>
+      <p class="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+        I'm always interested in discussing new opportunities, whether it's 
+        a full-time role, consulting project, or collaboration on something exciting.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a 
+          href="mailto:sean.meador@example.com?subject=Let's discuss an opportunity"
+          class="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
+        >
+          Start a conversation
+        </a>
+        <a 
+          href="/portfolio"
+          class="px-6 py-3 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors font-medium"
+        >
+          View my work
+        </a>
+      </div>
+      
+      <div class="mt-8 pt-8 border-t border-border">
+        <p class="text-sm text-muted-foreground">
+          Currently: <span class="font-medium text-foreground">Open to new opportunities</span> • 
+          Location: <span class="font-medium text-foreground">San Francisco Bay Area / Remote</span>
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

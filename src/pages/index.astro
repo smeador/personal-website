@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.tsx';
+import SocialLinks from '../components/home/SocialLinks.tsx';
+import QuickNavigation from '../components/home/QuickNavigation.tsx';
+---
+
+<BaseLayout title="Sean Meador - Personal Portfolio" description="Software engineer and writer passionate about building elegant web applications and exploring the intersection of technology and human experience.">
+  <!-- Hero Section -->
+  <Hero client:load />
+  
+  <!-- Social Links -->
+  <div class="pb-16">
+    <SocialLinks client:load />
+  </div>
+  
+  <!-- Quick Navigation Cards -->
+  <QuickNavigation client:load />
+  
+  <!-- Subtle gradient background -->
+  <div class="fixed inset-0 -z-10 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 pointer-events-none"></div>
+</BaseLayout>
