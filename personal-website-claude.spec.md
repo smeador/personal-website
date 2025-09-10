@@ -1,8 +1,8 @@
-# Personal Portfolio Website Specification
+# Personal Website Specification
 
 ## Project Overview
 
-Build a modern, performant personal portfolio website that showcases writing, projects, and professional experience. The site should be static but feel rich and dynamic, with smooth animations and excellent user experience.
+Build a modern, performant personal website that showcases writing, projects, and professional experience. The site should be static but feel rich and dynamic, with smooth animations and excellent user experience.
 
 ## Technical Stack
 
@@ -10,7 +10,7 @@ Build a modern, performant personal portfolio website that showcases writing, pr
 
 - **Astro** - Static site generator with islands architecture
 - **TypeScript** - For type safety
-- **MDX** - For content management (articles and portfolio items)
+- **MDX** - For content management (articles and timeline items)
 
 ### Styling & UI
 
@@ -39,7 +39,6 @@ Build a modern, performant personal portfolio website that showcases writing, pr
 │   │   ├── writing/
 │   │   │   ├── index.astro      // Writing listing page
 │   │   │   └── [...slug].astro  // Individual article pages
-│   │   ├── portfolio.astro      // Portfolio page
 │   │   └── experience.astro     // Experience/Resume page
 │   ├── layouts/                 // Astro layout components
 │   │   ├── BaseLayout.astro     // Main page layout
@@ -48,15 +47,12 @@ Build a modern, performant personal portfolio website that showcases writing, pr
 │   ├── content/
 │   │   ├── config.ts            // Content collections config
 │   │   ├── articles/            // MDX files for blog posts
-│   │   └── projects/            // MDX files for portfolio items
 │   ├── components/
 │   │   ├── ui/                  // shadcn/ui components
 │   │   ├── home/
 │   │   │   └── Hero.tsx         // Profile & intro with animations
 │   │   ├── writing/
 │   │   │   └── ArticleCard.tsx
-│   │   ├── portfolio/
-│   │   │   └── ProjectCard.tsx
 │   │   └── experience/
 │   │       ├── Timeline.tsx
 │   │       └── DownloadResume.tsx
@@ -78,7 +74,7 @@ Build a modern, performant personal portfolio website that showcases writing, pr
 
 - **Position**: Fixed at top, with backdrop blur on scroll
 - **Container**: max-w-5xl container matching main content width
-- **Links**: Home, Writing, Experience (Portfolio temporarily hidden)
+- **Links**: Home, Writing, Experience
 - **Style**: Minimal, clean, with subtle hover animations
 - **Mobile**: Responsive hamburger menu with consistent container width
 - **Active state**: Highlight current page
@@ -194,39 +190,7 @@ featured: false # Not displayed but kept for future use
 - Social sharing links
 - Comment/feedback sections
 
-### 5. Portfolio Page
-
-**Layout:**
-
-- **Section-based** organization (e.g., "Web Applications", "Open Source", "Design")
-- **Project Cards**:
-  - Screenshot/thumbnail (lazy loaded)
-  - Title and brief description
-  - Technologies used (as badges)
-  - Links: Live Demo, GitHub (where applicable)
-  - Click to expand for more details (modal or accordion)
-
-**Content Structure** (MDX):
-
-```yaml
-title: "Project Name"
-category: "Web Application"
-date: 2024-01-01
-description: "Brief project description"
-technologies: ["React", "Node.js", "PostgreSQL"]
-image: "/images/projects/project1.png"
-liveUrl: "https://example.com"
-githubUrl: "https://github.com/..."
-featured: true
-```
-
-**Animations**:
-
-- Image zoom on hover
-- Staggered fade-in for project cards
-- Smooth accordion/modal transitions
-
-### 6. Experience Page
+### 5. Experience Page
 
 **Layout**: Left-aligned header matching Writing page style with compact responsive spacing
 
@@ -390,7 +354,7 @@ achievements: ["Achievement 1", "Achievement 2"] # Shown in expanded view
 ### Global Meta Tags
 
 ```html
-<meta name="description" content="Personal portfolio..." />
+<meta name="description" content="Sean Meador Personal Website" />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -448,7 +412,7 @@ transition: { type: "spring", stiffness: 300 }
 
 ```bash
 # Create Astro project
-npm create astro@latest portfolio -- --template minimal --typescript --tailwind
+npm create astro@latest personal-website -- --template minimal --typescript --tailwind
 
 # Install dependencies
 pnpm add @astrojs/mdx @astrojs/react @astrojs/tailwind framer-motion pagefind
