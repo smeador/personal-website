@@ -2,60 +2,19 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import type { CollectionEntry } from 'astro:content';
 
-// Sample experience data - this would typically come from a content collection or API
-const experienceData = [
-  {
-    id: 1,
-    company: "Tech Company Inc.",
-    role: "Senior Software Engineer",
-    startDate: "2022-01",
-    endDate: "present",
-    location: "San Francisco, CA",
-    description: "Led development of scalable web applications serving 100k+ users. Architected microservices infrastructure and mentored junior developers. Improved application performance by 40% through optimization initiatives.",
-    technologies: ["React", "TypeScript", "Node.js", "AWS", "PostgreSQL", "Docker"],
-    achievements: [
-      "Reduced API response times by 60% through database optimization",
-      "Led migration to TypeScript, improving code quality and developer experience",
-      "Mentored 3 junior developers and established code review processes"
-    ]
-  },
-  {
-    id: 2,
-    company: "StartupXYZ",
-    role: "Full Stack Developer",
-    startDate: "2020-03",
-    endDate: "2022-01",
-    location: "Remote",
-    description: "Built the entire frontend and backend for a SaaS platform from scratch. Worked closely with design and product teams to deliver user-centric solutions. Implemented real-time features and payment processing.",
-    technologies: ["Vue.js", "Python", "Django", "Redis", "Stripe", "PostgreSQL"],
-    achievements: [
-      "Developed MVP that acquired first 1000 users within 6 months",
-      "Implemented secure payment processing handling $100k+ monthly revenue",
-      "Built real-time collaboration features using WebSockets"
-    ]
-  },
-  {
-    id: 3,
-    company: "Digital Agency Co.",
-    role: "Frontend Developer",
-    startDate: "2018-06",
-    endDate: "2020-03",
-    location: "New York, NY",
-    description: "Developed responsive websites and web applications for various clients. Collaborated with designers to create pixel-perfect implementations. Optimized sites for performance and SEO.",
-    technologies: ["JavaScript", "React", "SASS", "WordPress", "PHP", "MySQL"],
-    achievements: [
-      "Delivered 15+ client projects with 100% on-time completion rate",
-      "Improved client website loading speeds by average of 50%",
-      "Established frontend development best practices for the team"
-    ]
-  }
-];
+type TimelineItem = CollectionEntry<'experience'> | CollectionEntry<'education'>;
 
-export default function Timeline() {
-  const [expandedItems, setExpandedItems] = useState<number[]>([]);
+interface TimelineProps {
+  items: TimelineItem[];
+  type: 'experience' | 'education';
+}
 
-  const toggleExpanded = (id: number) => {
+export default function Timeline({ items, type }: TimelineProps) {
+  const [expandedItems, setExpandedItems] = useState<string[]>([]);
+
+  const toggleExpanded = (id: string) => {
     setExpandedItems(prev => 
       prev.includes(id) 
         ? prev.filter(item => item !== id)
@@ -63,16 +22,13 @@ export default function Timeline() {
     );
   };
 
-  const formatDate = (dateString: string) => {
-    if (dateString === 'present') return 'Present';
-    const [year, month] = dateString.split('-');
-    const date = new Date(parseInt(year), parseInt(month) - 1);
+  const formatDate = (date: Date) => {
     return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
   };
 
-  const getDuration = (startDate: string, endDate: string) => {
-    const start = new Date(startDate + '-01');
-    const end = endDate === 'present' ? new Date() : new Date(endDate + '-01');
+  const getDuration = (startDate: Date, endDate?: Date) => {
+    const start = startDate;
+    const end = endDate || new Date();
     
     const months = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
     const years = Math.floor(months / 12);
@@ -83,18 +39,45 @@ export default function Timeline() {
     return `${years} year${years === 1 ? '' : 's'} ${remainingMonths} month${remainingMonths === 1 ? '' : 's'}`;
   };
 
+  const getItemTitle = (item: TimelineItem) => {
+    return type === 'experience' 
+      ? (item.data as any).role 
+      : (item.data as any).degree;
+  };
+
+  const getItemSubtitle = (item: TimelineItem) => {
+    return type === 'experience' 
+      ? (item.data as any).company 
+      : (item.data as any).institution;
+  };
+
+  const getItemLocation = (item: TimelineItem) => {
+    return item.data.location;
+  };
+
+  const getItemAchievements = (item: TimelineItem) => {
+    return type === 'experience' 
+      ? (item.data as any).achievements || []
+      : (item.data as any).honors || [];
+  };
+
+  const getAchievementsLabel = () => {
+    return type === 'experience' ? 'Key Achievements:' : 'Honors & Activities:';
+  };
+
   return (
     <div className="relative">
       {/* Timeline line */}
       <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-border"></div>
       
       <div className="space-y-8">
-        {experienceData.map((experience, index) => {
-          const isExpanded = expandedItems.includes(experience.id);
+        {items.map((item, index) => {
+          const isExpanded = expandedItems.includes(item.slug);
+          const achievements = getItemAchievements(item);
           
           return (
             <motion.div
-              key={experience.id}
+              key={item.slug}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -106,27 +89,29 @@ export default function Timeline() {
               <Card className="hover:shadow-lg transition-all duration-300">
                 <CardHeader 
                   className="cursor-pointer" 
-                  onClick={() => toggleExpanded(experience.id)}
+                  onClick={() => toggleExpanded(item.slug)}
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
                       <CardTitle className="text-xl font-semibold text-foreground">
-                        {experience.role}
+                        {getItemTitle(item)}
                       </CardTitle>
                       <div className="flex items-center gap-2 mt-1">
                         <span className="text-lg font-medium text-primary">
-                          {experience.company}
+                          {getItemSubtitle(item)}
                         </span>
-                        <Badge variant="outline" className="text-xs">
-                          {experience.location}
-                        </Badge>
+                        {getItemLocation(item) && (
+                          <Badge variant="outline" className="text-xs">
+                            {getItemLocation(item)}
+                          </Badge>
+                        )}
                       </div>
                       <div className="flex items-center gap-4 text-sm text-muted-foreground mt-2">
                         <span>
-                          {formatDate(experience.startDate)} - {formatDate(experience.endDate)}
+                          {formatDate(item.data.startDate)} - {item.data.endDate ? formatDate(item.data.endDate) : 'Present'}
                         </span>
                         <span>•</span>
-                        <span>{getDuration(experience.startDate, experience.endDate)}</span>
+                        <span>{getDuration(item.data.startDate, item.data.endDate)}</span>
                       </div>
                     </div>
                     
@@ -147,9 +132,8 @@ export default function Timeline() {
                 
                 <CardContent>
                   <CardDescription className="text-muted-foreground leading-relaxed mb-4">
-                    {experience.description}
+                    {item.data.description}
                   </CardDescription>
-                  
                   
                   {/* Expanded content */}
                   <motion.div
@@ -162,15 +146,24 @@ export default function Timeline() {
                     className="overflow-hidden"
                   >
                     <div className="border-t border-border pt-4 mt-4">
-                      <p className="text-sm font-medium text-foreground mb-3">Key Achievements:</p>
-                      <ul className="space-y-2">
-                        {experience.achievements.map((achievement, achievementIndex) => (
-                          <li key={achievementIndex} className="flex items-start gap-3 text-sm text-muted-foreground">
-                            <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0"></div>
-                            <span>{achievement}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      {achievements.length > 0 && (
+                        <>
+                          <p className="text-sm font-medium text-foreground mb-3">
+                            {getAchievementsLabel()}
+                          </p>
+                          <ul className="space-y-2 mb-4">
+                            {achievements.map((achievement: string, achievementIndex: number) => (
+                              <li key={achievementIndex} className="flex items-start gap-3 text-sm text-muted-foreground">
+                                <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0"></div>
+                                <span>{achievement}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </>
+                      )}
+                      
+                      {/* Note: MDX content rendering would need to be handled at the Astro level */}
+                      {/* For now, we'll just show the description which is already displayed above */}
                     </div>
                   </motion.div>
                 </CardContent>
