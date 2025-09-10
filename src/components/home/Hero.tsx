@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <div className="container">
+    <div>
       {/* Mobile: Profile above title, Desktop: Side by side */}
       <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 md:min-h-[320px] items-center">
         {/* Profile image - First on mobile, Second on desktop */}

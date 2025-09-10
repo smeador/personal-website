@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export default function About() {
   return (
-    <div className="container">
+    <div>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
