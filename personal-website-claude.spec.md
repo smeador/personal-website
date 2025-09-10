@@ -51,8 +51,7 @@ Build a modern, performant personal portfolio website that showcases writing, pr
 │   │   │   ├── Hero.tsx         // Profile & intro with animations
 │   │   │   └── SocialLinks.tsx
 │   │   ├── writing/
-│   │   │   ├── ArticleCard.tsx
-│   │   │   └── SearchBar.tsx
+│   │   │   └── ArticleCard.tsx
 │   │   ├── portfolio/
 │   │   │   └── ProjectCard.tsx
 │   │   └── experience/
@@ -112,34 +111,54 @@ Build a modern, performant personal portfolio website that showcases writing, pr
 - Smooth scroll behavior and hover effects throughout
 
 ### 3. Writing Page
-**Features:**
-- **Search Bar**:
-  - Sticky below header
-  - Pagefind integration
-  - Search by title, content, tags
-  - Show result count
-  
-- **Article List**:
-  - Card layout (responsive grid)
-  - Each card shows: Title, Date, Reading time, Excerpt, Tags
-  - Hover effect: slight shadow increase
-  - Sort by: Date (default), Reading time
-  
-- **Content Structure** (MDX frontmatter):
-  ```yaml
-  title: "Article Title"
-  date: 2024-01-15
-  excerpt: "Brief description"
-  tags: ["web", "react", "performance"]
-  readingTime: "5 min"
-  featured: false
-  ```
+**Layout**:
+- **Header**: Left-aligned "writing." title with section subtitle matching home page style
+- **Article List**: Full-width cards respecting container margins (max-w-5xl)
+- **Simplified Design**: Clean, focused layout without search or complex features
 
-**Animations**:
-- Cards fade in on scroll (intersection observer)
-- Search results animate in/out
+**Features**:
+- **Article Cards**: 
+  - Full-width cards with hover effects (shadow, border color change)
+  - Display: Title, Date, Excerpt only
+  - Sorted by date (newest first)
+  - No tags, reading time, or featured indicators shown
+- **No Search**: Search functionality removed for simplicity (may be added back later)
 
-### 4. Portfolio Page
+**Content Structure** (MDX frontmatter):
+```yaml
+title: "Article Title"
+date: 2024-01-15
+excerpt: "Brief description"
+tags: ["web", "react", "performance"]  # Not displayed but kept for future use
+readingTime: "5 min"                   # Not displayed but kept for future use
+featured: false                        # Not displayed but kept for future use
+```
+
+### 4. Individual Article Page
+**Layout**:
+- **Header**: 
+  - "Back to Writing" navigation link with arrow icon
+  - Clean title display (large, prominent)
+  - Date formatted as "Month DD, YYYY"
+  - Author attribution ("by Sean Meador")
+  - No tags, reading time, or featured indicators
+- **Content**: 
+  - Article content rendered from MDX with proper prose styling
+  - No footer elements (social sharing, comments, etc. removed for future consideration)
+  - Maximum width container for optimal reading experience
+
+**Styling**:
+- Matches overall site design with coral accent colors
+- Custom prose styles for article content
+- Responsive typography and spacing
+
+**Removed Elements**:
+- Tags display and reading time
+- "Thanks for reading" footer section
+- Social sharing links
+- Comment/feedback sections
+
+### 5. Portfolio Page
 **Layout:**
 - **Section-based** organization (e.g., "Web Applications", "Open Source", "Design")
 - **Project Cards**:
@@ -167,22 +186,39 @@ featured: true
 - Staggered fade-in for project cards
 - Smooth accordion/modal transitions
 
-### 5. Experience Page
-**Components:**
-- **Interactive Timeline**:
-  - Vertical line with nodes for each position
-  - Company, Role, Duration, Location
-  - Click to expand for detailed description
-  - Technologies/skills used
+### 6. Experience Page
+**Layout**: Left-aligned header matching Writing page style with compact responsive spacing
+
+**Header Components:**
+- **Page Title**: "experience." with section-title styling and left alignment
+- **Summary**: Brief description paragraph with responsive typography
+- **Download Resume Button**: 
+  - Desktop: Inline with title (right-aligned, vertically centered)
+  - Mobile: Below summary text, left-aligned
+  - Links to `/resume.pdf` with download icon
+
+**Content Sections:**
+- **Professional Timeline**:
+  - Section title: "Professional" (simplified from "Professional Experience")
+  - Vertical line with circular nodes for each position
+  - Company, Role, Duration, Location displayed in card format
+  - Click to expand for detailed descriptions and achievements
+  - Clean card design with hover effects
+  - No technology tags displayed (removed for cleaner appearance)
   
-- **Resume Download**:
-  - Prominent download button
-  - PDF format
-  - Optional: View inline with PDF.js
-  
-- **Skills Section**:
-  - Grouped by category
-  - Visual skill level indicators (optional)
+- **Education Timeline**:
+  - Section title: "Education" 
+  - Same visual style as professional timeline
+  - University, Degree, Duration format
+  - Description with relevant coursework mentioned in text
+  - No coursework tags displayed (removed for cleaner appearance)
+
+**Design Improvements:**
+- Compact section spacing (`mb-6` for headers vs previous `mb-12`)
+- Consistent typography matching professional timeline font sizes
+- Removed unnecessary summary paragraphs under section titles
+- Both timelines respect page margins (max-w-5xl container)
+- Consistent card styling and hover effects throughout
 
 **Data Structure:**
 ```yaml
@@ -192,13 +228,20 @@ startDate: 2022-01
 endDate: 2024-01  # or "present"
 location: "San Francisco, CA"
 description: "Role description..."
-technologies: ["Python", "AWS", "React"]
+technologies: ["Python", "AWS", "React"]  # Used internally but not displayed
+achievements: ["Achievement 1", "Achievement 2"]  # Shown in expanded view
 ```
 
-**Animations**:
-- Timeline items animate in as user scrolls
-- Smooth expand/collapse for details
-- Download button pulse animation
+**Responsive Behavior:**
+- Mobile: Smaller spacing, stacked layout, resume button below summary
+- Desktop: Inline resume button, optimal timeline spacing
+- Consistent with Writing page header patterns
+
+**Removed Elements:**
+- Technology/skill tags from professional experience cards
+- Coursework tags from education section  
+- Descriptive paragraphs under section titles
+- Skills section (may be added back later if needed)
 
 ## Design System
 
@@ -472,7 +515,25 @@ PUBLIC_VERCEL_ANALYTICS_ID=your-analytics-id
 
 ## Testing Requirements
 
+### Package Dependencies Verification
+Before deployment, verify that dependencies are correctly categorized in `package.json`:
+
+**Runtime Dependencies** (`dependencies`):
+- Required for production builds and runtime
+- Examples: `astro`, `@astrojs/mdx`, `@astrojs/react`, `framer-motion`, `pagefind`
+
+**Development Dependencies** (`devDependencies`):
+- Only needed during development/build process
+- Examples: `@types/react`, `@types/react-dom`, `tailwindcss`, `@tailwindcss/typography`
+
+**Verification Steps:**
+1. Review `package.json` dependency categorization
+2. Test production build with only runtime dependencies installed
+3. Ensure no dev-only packages are required at runtime
+4. Check bundle size impact of any dependency changes
+
 ### Pre-deployment Checklist
+- [ ] Dependencies correctly categorized (runtime vs dev)
 - [ ] All links work (internal and external)
 - [ ] Images load and have alt text
 - [ ] Search functionality works
@@ -515,12 +576,39 @@ The website has been successfully implemented and recently updated with enhanced
 
 ### 🎨 Design Enhancements (Recent Updates)
 - **Hybrid design system** - Blends fun warmth with professional elegance
-- **Custom typography** - Bold, impactful headings with coral accents
+- **Custom header font** - Lowercase custom styling with animated coral underline
+- **Austin skyline background** - Medium gray tinted Austin skyline image behind content
+- **Responsive hero layout** - Mobile-first design with profile above title on small screens
+- **Enhanced mobile experience** - Smaller profile image and centered content on mobile
 - **Organic profile image styling** - Gradient background blur effects
-- **Enhanced footer** - Properly centered social icons with mobile stacking
+- **Enhanced footer** - Properly centered social icons with mobile stacking (fixed pointer-events)
 - **Removed clutter** - Eliminated geometric shapes and navigation cards for cleaner focus
 - **Aligned containers** - Fixed padding structure so header, footer, and content align perfectly
 - **Reusable icon components** - Extracted SVG icons into separate components for better maintainability
+- **Compact page headers** - Reduced spacing on Writing and Experience pages for better mobile experience
+- **Consistent page layouts** - Both Writing and Experience pages use matching header patterns
+
+### 🌆 Austin Skyline Integration
+- **Background image**: `/public/images/austin-skyline.png` (109KB, medium gray tinted)
+- **Responsive positioning**:
+  - **Mobile**: Inline between hero and about sections with 10px top spacing
+  - **Desktop**: Overlaps hero section by 136px for integrated effect
+- **Container structure**: Dedicated container div with consistent max-w-5xl margins
+- **Visual treatment**: `grayscale(100%) brightness(0.5) contrast(1.3)` with 40% opacity
+- **Sizing**: Responsive heights (h-32 mobile, h-56 md, h-64 lg) with `background-size: contain`
+
+### 📱 Responsive Hero Layout
+- **Mobile behavior**:
+  - Profile image appears above title text
+  - Smaller profile size (w-40 h-40 vs w-64 h-64 desktop)
+  - Centered text alignment
+  - No minimum height constraint for natural content flow
+  - Austin skyline appears inline after content
+- **Desktop behavior**:
+  - Two-column grid layout (text left, profile right)  
+  - Left-aligned text
+  - 400px minimum height for proper proportions
+  - Austin skyline overlaps hero content above
 
 ### 📝 Ready for Content
 - Add real profile image to `/public/images/profile.jpg` 

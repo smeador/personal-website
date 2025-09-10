@@ -53,21 +53,23 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Austin Skyline - Respecting container margins */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
-        className="container mx-auto max-w-5xl px-4 mb-4 pointer-events-none relative z-0 skyline-responsive-margin"
-      >
-        <div
-          className="w-full h-32 md:h-56 lg:h-64 bg-center bg-no-repeat austin-skyline-bg"
-          style={{
-            backgroundImage: "url(/images/austin-skyline.png)",
-            backgroundSize: "contain",
-          }}
-        />
-      </motion.div>
+      {/* Austin Skyline Container */}
+      <div className="container mx-auto max-w-5xl px-4 mb-4 skyline-responsive-margin">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
+          className="w-full pointer-events-none relative z-0"
+        >
+          <div
+            className="w-full h-32 md:h-56 lg:h-64 bg-center bg-no-repeat austin-skyline-bg"
+            style={{
+              backgroundImage: "url(/images/austin-skyline.png)",
+              backgroundSize: "contain",
+            }}
+          />
+        </motion.div>
+      </div>
 
       <div className="container mx-auto max-w-5xl px-4">
         {/* About section */}

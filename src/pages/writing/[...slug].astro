@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { Badge } from '../../components/ui/badge';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles');
@@ -14,14 +13,14 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 const { Content } = await article.render();
-const { title, date, excerpt, tags, readingTime, featured } = article.data;
+const { title, date, excerpt } = article.data;
 ---
 
 <BaseLayout title={title} description={excerpt}>
   <article class="py-16 px-4" data-pagefind-body>
     <div class="container mx-auto max-w-4xl">
       <!-- Article Header -->
-      <header class="text-center mb-12" data-pagefind-meta="title,excerpt,tags">
+      <header class="text-center mb-12" data-pagefind-meta="title">
         <div class="mb-6">
           <a 
             href="/writing" 
@@ -38,7 +37,7 @@ const { title, date, excerpt, tags, readingTime, featured } = article.data;
           {title}
         </h1>
         
-        <div class="flex items-center justify-center gap-4 text-muted-foreground text-sm mb-6">
+        <div class="text-muted-foreground text-sm space-y-2">
           <time datetime={date.toISOString()}>
             {date.toLocaleDateString('en-US', { 
               year: 'numeric', 
@@ -46,59 +45,16 @@ const { title, date, excerpt, tags, readingTime, featured } = article.data;
               day: 'numeric' 
             })}
           </time>
-          <span>•</span>
-          <span>{readingTime}</span>
-          {featured && (
-            <>
-              <span>•</span>
-              <Badge variant="secondary" className="text-xs">
-                Featured
-              </Badge>
-            </>
-          )}
-        </div>
-        
-        {tags && tags.length > 0 && (
-          <div class="flex flex-wrap justify-center gap-2">
-            {tags.map((tag) => (
-              <Badge variant="outline" className="text-xs">
-                {tag}
-              </Badge>
-            ))}
+          <div class="text-muted-foreground">
+            by Sean Meador
           </div>
-        )}
+        </div>
       </header>
 
       <!-- Article Content -->
       <div class="prose prose-lg prose-slate dark:prose-invert max-w-none">
         <Content />
       </div>
-
-      <!-- Article Footer -->
-      <footer class="mt-16 pt-8 border-t border-border">
-        <div class="text-center">
-          <p class="text-muted-foreground mb-4">
-            Thanks for reading! Share your thoughts or questions.
-          </p>
-          <div class="flex justify-center space-x-4">
-            <a 
-              href="https://x.com/seanmeador" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
-              Discuss on X
-            </a>
-            <span class="text-muted-foreground">•</span>
-            <a 
-              href="mailto:sean.meador@example.com?subject=Re: {title}"
-              class="text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
-              Send feedback
-            </a>
-          </div>
-        </div>
-      </footer>
     </div>
   </article>
 </BaseLayout>

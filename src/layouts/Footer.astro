@@ -16,8 +16,8 @@ import SubstackIcon from '../components/icons/SubstackIcon.astro';
       </div>
       
       <!-- Center - Social Links (always centered on desktop, top on mobile) -->
-      <div class="absolute inset-x-0 justify-center hidden md:flex">
-        <div class="flex items-center space-x-6">
+      <div class="absolute inset-x-0 justify-center hidden md:flex pointer-events-none">
+        <div class="flex items-center space-x-6 pointer-events-auto">
           <a 
             href="https://linkedin.com/in/seanmeador" 
             target="_blank" 
@@ -122,7 +122,7 @@ import SubstackIcon from '../components/icons/SubstackIcon.astro';
           Resume
         </a>
         <a 
-          href="mailto:sean.meador@example.com"
+          href="mailto:sean@meador.me"
           class="text-sm text-muted-foreground hover:text-coral transition-colors"
         >
           Contact

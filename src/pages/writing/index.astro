@@ -1,75 +1,58 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import SearchBar from '../../components/writing/SearchBar.tsx';
-import ArticleCard from '../../components/writing/ArticleCard.tsx';
 
 // Get all articles and sort by date (newest first)
 const allArticles = await getCollection('articles');
 const sortedArticles = allArticles.sort((a, b) => 
   b.data.date.getTime() - a.data.date.getTime()
 );
-
-// Separate featured articles
-const featuredArticles = sortedArticles.filter(article => article.data.featured);
-const regularArticles = sortedArticles.filter(article => !article.data.featured);
 ---
 
 <BaseLayout 
   title="Writing - Sean Meador" 
   description="Explore my thoughts on technology, development, and the digital world through in-depth articles and insights."
 >
-  <!-- Hero Section -->
-  <section class="py-16 px-4">
-    <div class="container mx-auto max-w-4xl text-center">
-      <h1 class="text-4xl md:text-5xl font-bold text-foreground mb-4">
-        Writing
-      </h1>
-      <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
-        Exploring technology, development practices, and the intersection of code and creativity
-      </p>
-    </div>
-  </section>
-
-  <!-- Search Bar -->
-  <SearchBar client:load />
-
-  <!-- Articles Grid -->
-  <section class="py-16 px-4">
-    <div class="container mx-auto max-w-5xl">
+  <section class="pt-8 md:pt-2 pb-20">
+    <div class="container mx-auto max-w-5xl px-4">
       
-      <!-- Featured Articles -->
-      {featuredArticles.length > 0 && (
-        <div class="mb-16">
-          <h2 class="text-2xl font-bold text-foreground mb-8 text-center">
-            Featured Articles
-          </h2>
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredArticles.map((article, index) => (
-              <ArticleCard 
-                article={article} 
-                index={index}
-                client:load 
-              />
-            ))}
-          </div>
-        </div>
-      )}
+      <!-- Writing header - matching home page style -->
+      <div class="mt-2 md:mt-8">
+        <h1 class="section-title mb-4 md:mb-6">writing.</h1>
+        <p class="text-lg md:text-xl text-muted-foreground leading-relaxed font-medium mb-8 md:mb-10">
+          Thoughts on engineering leadership, technology, and building teams that create meaningful software.
+        </p>
+      </div>
 
-      <!-- All Articles -->
-      <div>
-        <h2 class="text-2xl font-bold text-foreground mb-8 text-center">
-          {featuredArticles.length > 0 ? 'All Articles' : 'Articles'}
-        </h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {sortedArticles.map((article, index) => (
-            <ArticleCard 
-              article={article} 
-              index={index}
-              client:load 
-            />
-          ))}
-        </div>
+      <!-- Article list -->
+      <div class="space-y-6">
+        {sortedArticles.map((article) => (
+          <article class="group">
+            <a 
+              href={`/writing/${article.slug}`}
+              class="block w-full p-6 bg-card border border-border rounded-lg hover:shadow-lg hover:border-coral/20 transition-all duration-300"
+            >
+              <div class="flex flex-col space-y-3">
+                <h2 class="text-xl md:text-2xl font-semibold text-foreground group-hover:text-coral transition-colors">
+                  {article.data.title}
+                </h2>
+                <time 
+                  datetime={article.data.date.toISOString()}
+                  class="text-sm text-muted-foreground"
+                >
+                  {article.data.date.toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                  })}
+                </time>
+                <p class="text-muted-foreground leading-relaxed">
+                  {article.data.excerpt}
+                </p>
+              </div>
+            </a>
+          </article>
+        ))}
         
         {sortedArticles.length === 0 && (
           <div class="text-center py-16">

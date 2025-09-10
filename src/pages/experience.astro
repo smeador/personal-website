@@ -9,111 +9,109 @@ import Skills from '../components/experience/Skills.tsx';
   title="Experience - Sean Meador" 
   description="Explore my professional journey, technical expertise, and the impact I've made throughout my career in software engineering."
 >
-  <!-- Hero Section -->
-  <section class="py-16 px-4">
-    <div class="container mx-auto max-w-4xl text-center">
-      <h1 class="text-4xl md:text-5xl font-bold text-foreground mb-4">
-        Experience
-      </h1>
-      <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
-        My professional journey in software engineering, from early career foundations 
-        to leading complex technical initiatives
-      </p>
-    </div>
-  </section>
-
-  <!-- Professional Timeline -->
-  <section class="py-16 px-4">
-    <div class="container mx-auto max-w-6xl">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-foreground mb-4">
-          Professional Timeline
-        </h2>
-        <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Click on any position to learn more about my responsibilities, 
-          achievements, and the technologies I worked with
+  <section class="pt-8 md:pt-2 pb-20">
+    <div class="container mx-auto max-w-5xl px-4">
+      
+      <!-- Experience header - matching writing page style -->
+      <div class="mt-2 md:mt-8">
+        <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4 md:mb-6">
+          <div class="flex-1">
+            <h1 class="section-title mb-4 md:mb-0">experience.</h1>
+          </div>
+          <div class="hidden md:block md:ml-8">
+            <a 
+              href="/resume.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium text-sm"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              </svg>
+              Download Resume
+            </a>
+          </div>
+        </div>
+        <p class="text-lg md:text-xl text-muted-foreground leading-relaxed font-medium mb-6">
+          My professional journey in software engineering, from early career foundations to leading complex technical initiatives.
         </p>
-      </div>
-      
-      <Timeline client:load />
-    </div>
-  </section>
-
-  <!-- Skills Section -->
-  <Skills client:load />
-
-  <!-- Resume Download -->
-  <section class="py-16 px-4">
-    <div class="container mx-auto">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-foreground mb-4">
-          Get the Full Picture
-        </h2>
-        <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
-          While this timeline covers the highlights, there's much more to discover 
-          about my background, projects, and accomplishments
-        </p>
-      </div>
-      
-      <DownloadResume client:load />
-    </div>
-  </section>
-
-  <!-- Career Stats -->
-  <section class="py-16 px-4 bg-muted/30">
-    <div class="container mx-auto max-w-4xl">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        <div class="space-y-2">
-          <div class="text-3xl md:text-4xl font-bold text-primary">5+</div>
-          <div class="text-sm text-muted-foreground">Years Experience</div>
-        </div>
-        <div class="space-y-2">
-          <div class="text-3xl md:text-4xl font-bold text-primary">20+</div>
-          <div class="text-sm text-muted-foreground">Projects Delivered</div>
-        </div>
-        <div class="space-y-2">
-          <div class="text-3xl md:text-4xl font-bold text-primary">100k+</div>
-          <div class="text-sm text-muted-foreground">Users Impacted</div>
-        </div>
-        <div class="space-y-2">
-          <div class="text-3xl md:text-4xl font-bold text-primary">3</div>
-          <div class="text-sm text-muted-foreground">Teams Led</div>
+        
+        <!-- Mobile resume button - below summary -->
+        <div class="md:hidden mb-8 md:mb-10">
+          <a 
+            href="/resume.pdf" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium text-sm"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            Download Resume
+          </a>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Call to Action -->
-  <section class="py-16 px-4">
-    <div class="container mx-auto max-w-4xl text-center">
-      <h2 class="text-2xl md:text-3xl font-bold text-foreground mb-4">
-        Ready to work together?
-      </h2>
-      <p class="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-        I'm always interested in discussing new opportunities, whether it's 
-        a full-time role, consulting project, or collaboration on something exciting.
-      </p>
-      
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a 
-          href="mailto:sean.meador@example.com?subject=Let's discuss an opportunity"
-          class="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
-        >
-          Start a conversation
-        </a>
-        <a 
-          href="/portfolio"
-          class="px-6 py-3 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors font-medium"
-        >
-          View my work
-        </a>
+      <!-- Professional Timeline -->
+      <div class="mb-16">
+        <div class="mb-6">
+          <h2 class="text-2xl md:text-3xl font-bold text-foreground mb-6">
+            Professional
+          </h2>
+        </div>
+        
+        <Timeline client:load />
       </div>
-      
-      <div class="mt-8 pt-8 border-t border-border">
-        <p class="text-sm text-muted-foreground">
-          Currently: <span class="font-medium text-foreground">Open to new opportunities</span> • 
-          Location: <span class="font-medium text-foreground">San Francisco Bay Area / Remote</span>
-        </p>
+
+      <!-- Education Timeline -->
+      <div class="mb-16">
+        <div class="mb-6">
+          <h2 class="text-2xl md:text-3xl font-bold text-foreground mb-6">
+            Education
+          </h2>
+        </div>
+        
+        <!-- Education Timeline - matching professional timeline style -->
+        <div class="relative">
+          <!-- Timeline line -->
+          <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-border"></div>
+          
+          <div class="space-y-8">
+            <div class="relative pl-20">
+              <!-- Timeline node -->
+              <div class="absolute left-6 top-6 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg"></div>
+              
+              <div class="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-all duration-300">
+                <div class="flex items-start justify-between gap-4">
+                  <div class="flex-1">
+                    <h3 class="text-xl font-semibold text-foreground">
+                      Bachelor of Science in Computer Science
+                    </h3>
+                    <div class="flex items-center gap-2 mt-1">
+                      <span class="text-lg font-medium text-primary">
+                        University Name
+                      </span>
+                    </div>
+                    <div class="flex items-center gap-4 text-sm text-muted-foreground mt-2">
+                      <span>2015 - 2019</span>
+                      <span>•</span>
+                      <span>4 years</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="mt-4">
+                  <p class="text-sm text-muted-foreground leading-relaxed">
+                    Focused on software engineering fundamentals, algorithms, and system design. 
+                    Relevant coursework included Data Structures, Software Engineering, Database Systems, 
+                    and Computer Networks.
+                  </p>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

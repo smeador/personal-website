@@ -84,7 +84,7 @@ export default function Timeline() {
   };
 
   return (
-    <div className="relative max-w-4xl mx-auto">
+    <div className="relative">
       {/* Timeline line */}
       <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-border"></div>
       
@@ -150,21 +150,6 @@ export default function Timeline() {
                     {experience.description}
                   </CardDescription>
                   
-                  {/* Technologies */}
-                  <div className="mb-4">
-                    <p className="text-sm font-medium text-foreground mb-2">Technologies:</p>
-                    <div className="flex flex-wrap gap-2">
-                      {experience.technologies.map((tech) => (
-                        <Badge 
-                          key={tech} 
-                          variant="secondary" 
-                          className="text-xs hover:bg-primary hover:text-primary-foreground transition-colors"
-                        >
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
                   
                   {/* Expanded content */}
                   <motion.div
