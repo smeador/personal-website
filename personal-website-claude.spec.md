@@ -79,6 +79,25 @@ Build a modern, performant personal portfolio website that showcases writing, pr
 - **Mobile**: Responsive hamburger menu with consistent container width
 - **Active state**: Highlight current page
 
+### 1.5. Footer (Global)
+- **Layout**: Three-column layout with responsive behavior
+  - **Left**: Copyright text "© {currentYear} Sean Meador"
+  - **Center**: Social media icons (absolutely positioned for perfect centering on desktop)
+  - **Right**: "View source code" link to GitHub repository
+- **Social Icons**: 
+  - **Order**: Email, LinkedIn, GitHub, Substack, X (Twitter)
+  - **Links**: mailto:sean@meador.me, LinkedIn (/in/seanmeador), GitHub (/smeador), Substack (@smeador), X (@seanmeador)
+  - **Styling**: Coral hover effects, consistent 6x6 sizing
+  - **Implementation**: React components with `client:load` for Astro compatibility
+- **Mobile Behavior**:
+  - Social icons stack vertically above copyright
+  - "View source code" link remains on right
+  - Maintains consistent container margins (max-w-5xl)
+- **Technical Notes**:
+  - Uses `pointer-events-none` on container with `pointer-events-auto` on inner elements for proper click handling
+  - Email icon uses enhanced SVG design for better visual balance
+  - All icons use React components from barrel export `/src/components/icons/index.ts`
+
 ### 2. Home Page
 **Layout**: Two-column responsive design (stacks on mobile at md breakpoint)
 
@@ -97,9 +116,11 @@ Build a modern, performant personal portfolio website that showcases writing, pr
 - **Connect Section**:
   - Custom SVG icons (not emojis) for each platform
   - Email: sean@meador.me
-  - Social links displayed as usernames: seanmeador (LinkedIn), @smeador (Substack), smeador (GitHub)
+  - Social links displayed as usernames: seanmeador (LinkedIn), smeador (GitHub), @smeador (Substack), @seanmeador (X/Twitter)
+  - Order: Email, LinkedIn, GitHub, Substack, X (Twitter)
   - Vertically stacked, left-aligned layout
   - Icons styled in coral color with hover effects
+  - React icons using barrel export pattern for maintainability
 
 **Removed Elements**:
 - Quick Navigation Cards section (removed for cleaner focus)
@@ -513,6 +534,16 @@ PUBLIC_VERCEL_ANALYTICS_ID=your-analytics-id
 - Descriptive names for images: `project-dashboard-view.png`
 - Date prefix for articles: `2024-01-15-article-title.mdx`
 
+### Icon Management
+- All SVG icons should be extracted into reusable React components in `/src/components/icons/`
+- Use only `.tsx` format for consistency and flexibility
+- Export from index.ts for barrel imports: `import { IconName } from '../components/icons'`
+- Use consistent naming: `IconName.tsx`
+- Examples: `EmailIcon.tsx`, `LinkedInIcon.tsx`, `DownloadIcon.tsx`, `GitHubIcon.tsx`
+- Default size should be appropriate for use case with `className` prop for customization
+- Props interface: `{ className?: string }` with default size in component
+- In Astro files: use `client:load` when needed, or prefer inline SVG for static icons
+
 ## Testing Requirements
 
 ### Package Dependencies Verification
@@ -584,9 +615,13 @@ The website has been successfully implemented and recently updated with enhanced
 - **Enhanced footer** - Properly centered social icons with mobile stacking (fixed pointer-events)
 - **Removed clutter** - Eliminated geometric shapes and navigation cards for cleaner focus
 - **Aligned containers** - Fixed padding structure so header, footer, and content align perfectly
-- **Reusable icon components** - Extracted SVG icons into separate components for better maintainability
+- **Reusable icon components** - Extracted SVG icons into separate components for better maintainability (including DownloadIcon)
 - **Compact page headers** - Reduced spacing on Writing and Experience pages for better mobile experience
 - **Consistent page layouts** - Both Writing and Experience pages use matching header patterns
+- **Enhanced footer design** - Added email icon at front of social links, replaced contact/resume links with "View source code"
+- **Icon system overhaul** - Consolidated to React-only icons (.tsx), removed duplicate Astro versions, improved email icon design
+- **Added X (Twitter) integration** - New XIcon component and link added to both home page connect section and footer
+- **Updated favicon** - Custom orange "SM" favicon using Inter font and coral brand color
 
 ### 🌆 Austin Skyline Integration
 - **Background image**: `/public/images/austin-skyline.png` (109KB, medium gray tinted)

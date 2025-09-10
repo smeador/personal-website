@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { EmailIcon, LinkedInIcon, SubstackIcon, GitHubIcon } from "../icons";
+import { EmailIcon, LinkedInIcon, SubstackIcon, GitHubIcon, XIcon } from "../icons";
 
 export default function Hero() {
   return (
@@ -125,6 +125,17 @@ export default function Hero() {
               </a>
             </div>
             <div className="flex items-center space-x-3">
+              <GitHubIcon className="w-5 h-5 text-coral" />
+              <a
+                href="https://github.com/smeador"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-lg text-foreground hover:text-coral transition-colors"
+              >
+                smeador
+              </a>
+            </div>
+            <div className="flex items-center space-x-3">
               <SubstackIcon className="w-5 h-5 text-coral" />
               <a
                 href="https://substack.com/@smeador"
@@ -136,14 +147,14 @@ export default function Hero() {
               </a>
             </div>
             <div className="flex items-center space-x-3">
-              <GitHubIcon className="w-5 h-5 text-coral" />
+              <XIcon className="w-5 h-5 text-coral" />
               <a
-                href="https://github.com/smeador"
+                href="https://x.com/seanmeador"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-lg text-foreground hover:text-coral transition-colors"
               >
-                smeador
+                @seanmeador
               </a>
             </div>
           </div>
