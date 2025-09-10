@@ -1,47 +1,51 @@
 ---
-import Header from './Header.astro';
-import Footer from './Footer.astro';
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+import "../styles/global.css";
 
 export interface Props {
   title: string;
   description?: string;
 }
 
-const { title, description = "Personal portfolio website showcasing writing, projects, and professional experience" } = Astro.props;
+const {
+  title,
+  description = "Personal portfolio website showcasing writing, projects, and professional experience",
+} = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    
+
     <!-- SEO Meta Tags -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="/og-image.png" />
     <meta property="og:url" content={Astro.url} />
-    
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="/og-image.png" />
-    
-    <!-- Global Styles -->
-    <link rel="stylesheet" href="/src/styles/global.css" />
+
+    <!-- Global Styles are now imported in the frontmatter -->
   </head>
   <body>
     <main class="min-h-screen bg-background">
       <Header />
-      <div class="pt-16"> <!-- Account for fixed header height -->
+      <div class="pt-16">
+        <!-- Account for fixed header height -->
         <slot />
       </div>
       <Footer />
