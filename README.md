@@ -1,43 +1,45 @@
-# Astro Starter Kit: Minimal
+## Sean Meador — Personal Website
 
-```sh
-npm create astro@latest -- --template minimal
+A fast, content-focused personal site built with Astro, React, and Tailwind CSS. It showcases writing, projects, and professional experience, with MDX-powered content and built-in search. Deployed to Vercel.
+
+### Features
+
+- Content collections for articles and projects (MDX)
+- Clean, responsive UI with Tailwind and custom design tokens
+- Client-side search via Pagefind
+- React components for interactive sections
+- Deployed as a static site with `@astrojs/vercel`
+
+### Tech Stack
+
+- Astro 5
+- React 19
+- Tailwind CSS 3 (via `@astrojs/tailwind`)
+- MDX (`@astrojs/mdx`)
+- Pagefind search
+- Vercel deployment
+
+### Getting Started
+
+```bash
+pnpm i           # install dependencies
+pnpm dev         # start dev server (http://localhost:4321)
+pnpm build       # build to dist/ (includes search indexing)
+pnpm preview     # preview the production build
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Project Structure (high level)
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```
+public/           # static assets (favicons, images, resume)
+src/
+  components/     # React and UI components
+  content/        # MDX content (articles, projects)
+  layouts/        # shared Astro layouts
+  pages/          # route pages (Astro)
+  styles/         # global Tailwind styles & tokens
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Deployment
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+This project uses the Vercel adapter. Build and deploy via Vercel; the site URL is configured in `astro.config.mjs` (`site: "https://meador.me"`).
