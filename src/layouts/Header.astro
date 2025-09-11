@@ -10,29 +10,48 @@ const currentPath = Astro.url.pathname;
     transform: translateZ(0);
     will-change: auto;
   }
+
+  /* Prevent default blue flash on load/tap */
+  a.custom-header-name {
+    color: inherit;
+    text-decoration: none;
+  }
+  a.custom-header-name,
+  #mobile-menu-button {
+    -webkit-tap-highlight-color: transparent;
+  }
 </style>
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-  <nav class="container mx-auto max-w-5xl px-4 h-16 flex items-center justify-between">
+<header
+  class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border"
+>
+  <nav
+    class="container mx-auto max-w-5xl px-4 h-16 flex items-center justify-between"
+  >
     <!-- Logo/Name -->
-    <a href="/" class="custom-header-name text-foreground hover:text-primary transition-colors">
+    <a
+      href="/"
+      class="custom-header-name text-foreground hover:text-primary transition-colors"
+    >
       sean meador
     </a>
-    
+
     <!-- Navigation Links - Desktop -->
     <div class="hidden md:flex items-center space-x-8">
-      <a 
-        href="/" 
+      <a
+        href="/"
         class={`text-sm font-medium transition-colors hover:text-primary ${
-          currentPath === '/' ? 'text-primary' : 'text-muted-foreground'
+          currentPath === "/" ? "text-primary" : "text-muted-foreground"
         }`}
       >
         Home
       </a>
-      <a 
-        href="/writing" 
+      <a
+        href="/writing"
         class={`text-sm font-medium transition-colors hover:text-primary ${
-          currentPath.startsWith('/writing') ? 'text-primary' : 'text-muted-foreground'
+          currentPath.startsWith("/writing")
+            ? "text-primary"
+            : "text-muted-foreground"
         }`}
       >
         Writing
@@ -46,43 +65,59 @@ const currentPath = Astro.url.pathname;
       >
         Portfolio
       </a> -->
-      <a 
-        href="/experience" 
+      <a
+        href="/experience"
         class={`text-sm font-medium transition-colors hover:text-primary ${
-          currentPath === '/experience' ? 'text-primary' : 'text-muted-foreground'
+          currentPath === "/experience"
+            ? "text-primary"
+            : "text-muted-foreground"
         }`}
       >
         Experience
       </a>
     </div>
-    
+
     <!-- Mobile Menu Button -->
-    <button 
+    <button
       class="md:hidden p-2 text-muted-foreground hover:text-primary transition-colors"
       id="mobile-menu-button"
       aria-label="Toggle mobile menu"
     >
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      <svg
+        class="w-5 h-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
       </svg>
     </button>
   </nav>
-  
+
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden md:hidden border-t border-border bg-background/95 backdrop-blur-md overflow-hidden transition-all duration-300 ease-out">
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden border-t border-border bg-background/95 backdrop-blur-md overflow-hidden transition-all duration-300 ease-out"
+  >
     <div class="container mx-auto max-w-5xl px-4 py-4 space-y-2">
-      <a 
-        href="/" 
+      <a
+        href="/"
         class={`block py-3 text-sm font-medium transition-colors hover:text-primary ${
-          currentPath === '/' ? 'text-primary' : 'text-muted-foreground'
+          currentPath === "/" ? "text-primary" : "text-muted-foreground"
         }`}
       >
         Home
       </a>
-      <a 
-        href="/writing" 
+      <a
+        href="/writing"
         class={`block py-3 text-sm font-medium transition-colors hover:text-primary ${
-          currentPath.startsWith('/writing') ? 'text-primary' : 'text-muted-foreground'
+          currentPath.startsWith("/writing")
+            ? "text-primary"
+            : "text-muted-foreground"
         }`}
       >
         Writing
@@ -96,10 +131,12 @@ const currentPath = Astro.url.pathname;
       >
         Portfolio
       </a> -->
-      <a 
-        href="/experience" 
+      <a
+        href="/experience"
         class={`block py-3 text-sm font-medium transition-colors hover:text-primary ${
-          currentPath === '/experience' ? 'text-primary' : 'text-muted-foreground'
+          currentPath === "/experience"
+            ? "text-primary"
+            : "text-muted-foreground"
         }`}
       >
         Experience
@@ -110,50 +147,52 @@ const currentPath = Astro.url.pathname;
 
 <script>
   // Mobile menu toggle with animation
-  const mobileMenuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
   let isMenuOpen = false;
-  
+
   function openMenu() {
     if (mobileMenu) {
-      mobileMenu.classList.remove('hidden');
-      mobileMenu.style.maxHeight = '0px';
-      mobileMenu.style.opacity = '0';
-      
+      mobileMenu.classList.remove("hidden");
+      mobileMenu.style.maxHeight = "0px";
+      mobileMenu.style.opacity = "0";
+
       // Force reflow
       mobileMenu.offsetHeight;
-      
-      mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
-      mobileMenu.style.opacity = '1';
+
+      mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+      mobileMenu.style.opacity = "1";
       isMenuOpen = true;
     }
   }
-  
+
   function closeMenu() {
     if (mobileMenu) {
-      mobileMenu.style.maxHeight = '0px';
-      mobileMenu.style.opacity = '0';
-      
+      mobileMenu.style.maxHeight = "0px";
+      mobileMenu.style.opacity = "0";
+
       setTimeout(() => {
-        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.add("hidden");
         isMenuOpen = false;
       }, 300); // Match transition duration
     }
   }
-  
-  mobileMenuButton?.addEventListener('click', () => {
+
+  mobileMenuButton?.addEventListener("click", () => {
     if (isMenuOpen) {
       closeMenu();
     } else {
       openMenu();
     }
   });
-  
+
   // Close mobile menu when clicking outside
-  document.addEventListener('click', (e) => {
-    if (isMenuOpen && 
-        !mobileMenuButton?.contains(e.target as Node) && 
-        !mobileMenu?.contains(e.target as Node)) {
+  document.addEventListener("click", (e) => {
+    if (
+      isMenuOpen &&
+      !mobileMenuButton?.contains(e.target as Node) &&
+      !mobileMenu?.contains(e.target as Node)
+    ) {
       closeMenu();
     }
   });
