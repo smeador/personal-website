@@ -60,10 +60,10 @@ const currentPath = Astro.url.pathname;
   
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="hidden md:hidden border-t border-border bg-background/95 backdrop-blur-md overflow-hidden transition-all duration-300 ease-out">
-    <div class="container mx-auto max-w-5xl px-4 py-4 space-y-4">
+    <div class="container mx-auto max-w-5xl px-4 py-4 space-y-2">
       <a 
         href="/" 
-        class={`block text-sm font-medium transition-colors hover:text-primary ${
+        class={`block py-3 text-sm font-medium transition-colors hover:text-primary ${
           currentPath === '/' ? 'text-primary' : 'text-muted-foreground'
         }`}
       >
@@ -71,7 +71,7 @@ const currentPath = Astro.url.pathname;
       </a>
       <a 
         href="/writing" 
-        class={`block text-sm font-medium transition-colors hover:text-primary ${
+        class={`block py-3 text-sm font-medium transition-colors hover:text-primary ${
           currentPath.startsWith('/writing') ? 'text-primary' : 'text-muted-foreground'
         }`}
       >
@@ -80,7 +80,7 @@ const currentPath = Astro.url.pathname;
       <!-- Portfolio temporarily hidden until fully implemented -->
       <!-- <a 
         href="/portfolio" 
-        class={`block text-sm font-medium transition-colors hover:text-primary ${
+        class={`block py-3 text-sm font-medium transition-colors hover:text-primary ${
           currentPath === '/portfolio' ? 'text-primary' : 'text-muted-foreground'
         }`}
       >
@@ -88,7 +88,7 @@ const currentPath = Astro.url.pathname;
       </a> -->
       <a 
         href="/experience" 
-        class={`block text-sm font-medium transition-colors hover:text-primary ${
+        class={`block py-3 text-sm font-medium transition-colors hover:text-primary ${
           currentPath === '/experience' ? 'text-primary' : 'text-muted-foreground'
         }`}
       >
