@@ -9,7 +9,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="flex justify-center relative z-20 order-1 md:order-2 mt-4 md:mt-0"
         >
           <div className="relative">
@@ -17,7 +17,7 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, rotate: 180, scale: 0.8 }}
               animate={{ opacity: 0.3, rotate: 0, scale: 1 }}
-              transition={{ duration: 1, delay: 0.4 }}
+              transition={{ duration: 1.0, ease: "easeOut" }}
             />
             <img
               src="/images/profile.jpg"
@@ -53,7 +53,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           className="w-full pointer-events-none relative z-0"
         >
           <div

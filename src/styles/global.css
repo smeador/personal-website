@@ -185,8 +185,26 @@
     transition: width 0.3s ease;
   }
 
-  .custom-header-name:hover::after {
-    width: 100%;
+  /* Hide line animation on mobile, show on desktop only */
+  @media (min-width: 768px) {
+    .custom-header-name:hover::after {
+      width: 100%;
+    }
+  }
+
+  /* Simple text highlight on mobile tap */
+  @media (max-width: 767px) {
+    .custom-header-name:active {
+      color: hsl(var(--accent-coral));
+      transition: color 0.3s ease;
+    }
+  }
+
+  /* Ensure resume button styling remains stable during navigation */
+  .resume-button {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    will-change: auto;
   }
 
   /* Austin skyline background styling */

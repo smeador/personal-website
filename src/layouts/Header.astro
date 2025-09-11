@@ -59,7 +59,7 @@ const currentPath = Astro.url.pathname;
   </nav>
   
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden md:hidden border-t border-border bg-background/95 backdrop-blur-md">
+  <div id="mobile-menu" class="hidden md:hidden border-t border-border bg-background/95 backdrop-blur-md overflow-hidden transition-all duration-300 ease-out">
     <div class="container mx-auto max-w-5xl px-4 py-4 space-y-4">
       <a 
         href="/" 
@@ -99,19 +99,52 @@ const currentPath = Astro.url.pathname;
 </header>
 
 <script>
-  // Mobile menu toggle
+  // Mobile menu toggle with animation
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
+  let isMenuOpen = false;
+  
+  function openMenu() {
+    if (mobileMenu) {
+      mobileMenu.classList.remove('hidden');
+      mobileMenu.style.maxHeight = '0px';
+      mobileMenu.style.opacity = '0';
+      
+      // Force reflow
+      mobileMenu.offsetHeight;
+      
+      mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+      mobileMenu.style.opacity = '1';
+      isMenuOpen = true;
+    }
+  }
+  
+  function closeMenu() {
+    if (mobileMenu) {
+      mobileMenu.style.maxHeight = '0px';
+      mobileMenu.style.opacity = '0';
+      
+      setTimeout(() => {
+        mobileMenu.classList.add('hidden');
+        isMenuOpen = false;
+      }, 300); // Match transition duration
+    }
+  }
   
   mobileMenuButton?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
+    if (isMenuOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
   
   // Close mobile menu when clicking outside
   document.addEventListener('click', (e) => {
-    if (!mobileMenuButton?.contains(e.target as Node) && 
+    if (isMenuOpen && 
+        !mobileMenuButton?.contains(e.target as Node) && 
         !mobileMenu?.contains(e.target as Node)) {
-      mobileMenu?.classList.add('hidden');
+      closeMenu();
     }
   });
 </script>
