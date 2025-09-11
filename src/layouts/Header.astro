@@ -4,8 +4,8 @@ const currentPath = Astro.url.pathname;
 
 <style>
   /* Prevent header flash during navigation */
-  .custom-header-name,
-  #mobile-menu-button {
+  header,
+  header * {
     backface-visibility: hidden;
     transform: translateZ(0);
     will-change: auto;
