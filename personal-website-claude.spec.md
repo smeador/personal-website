@@ -50,12 +50,16 @@ Build a modern, performant personal website that showcases writing, projects, an
 │   ├── components/
 │   │   ├── ui/                  // shadcn/ui components
 │   │   ├── home/
-│   │   │   └── Hero.tsx         // Profile & intro with animations
+│   │   │   ├── Hero.tsx         // Profile & intro with animations
+│   │   │   ├── About.tsx        // About section with animation
+│   │   │   └── Connect.tsx      // Contact section with animation
 │   │   ├── writing/
-│   │   │   └── ArticleCard.tsx
+│   │   │   ├── ArticleCard.tsx  // Animated article cards
+│   │   │   └── WritingHeader.tsx // Page header component
 │   │   └── experience/
-│   │       ├── Timeline.tsx
-│   │       └── DownloadResume.tsx
+│   │       ├── Timeline.tsx     // Multi-position timeline component
+│   │       ├── ExperienceHeader.tsx // Page header with resume button
+│   │       └── SectionTitle.tsx // Animated section titles
 │   ├── styles/
 │   │   └── global.css           // Global styles & Tailwind directives
 │   └── lib/
@@ -145,10 +149,14 @@ Build a modern, performant personal website that showcases writing, projects, an
 **Features**:
 
 - **Article Cards**:
-  - Full-width cards with hover effects (shadow, border color change)
-  - Display: Title, Date, Excerpt only
+  - shadcn/ui Card components with consistent styling
+  - **Staggered animations**: 0.2s initial delay + 0.2s per card for smooth reveal
+  - **Responsive layout**:
+    - Desktop: Title and date side-by-side in header
+    - Mobile: Title and date stacked vertically for better readability
+  - **Content**: Title, Date, Excerpt only (no reading time displayed)
+  - **Hover effects**: Shadow and border color transitions
   - Sorted by date (newest first)
-  - No tags, reading time, or featured indicators shown
 - **No Search**: Search functionality removed for simplicity (may be added back later)
 
 **Content Structure** (MDX frontmatter):
@@ -206,18 +214,27 @@ featured: false # Not displayed but kept for future use
 **Content Sections:**
 
 - **Professional Timeline**:
-  - Section title: "Professional" (simplified from "Professional Experience")
-  - Vertical line with circular nodes for each position
-  - Company, Role, Duration, Location displayed in card format
-  - Click to expand for detailed descriptions and achievements
-  - Clean card design with hover effects
-  - No technology tags displayed (removed for cleaner appearance)
+  - Section title: "Professional" with staggered animation (0.2s delay)
+  - Vertical line with circular nodes hidden on mobile for better space usage
+  - **Card Header Layout**:
+    - Desktop: Organization name and duration in same row
+    - Mobile: Stacked vertically with even spacing
+    - Location badge below organization name
+    - Organization description (if present) below location badge
+  - **Multiple Positions Support**:
+    - Each organization can have multiple positions/roles
+    - Position cards show: role title, date range, duration
+    - Left border accent for visual separation of positions
+  - **Expand/Contract Animation**:
+    - Smooth animation for position descriptions (0.3s easeInOut)
+    - All position descriptions show when expanded
+    - Organization description always visible in header
+  - **Duration Format**: Abbreviated (e.g., "2 yrs 3 mos" instead of "2 years 3 months")
+
 - **Education Timeline**:
-  - Section title: "Education"
-  - Same visual style as professional timeline
-  - University, Degree, Duration format
-  - Description with relevant coursework mentioned in text
-  - No coursework tags displayed (removed for cleaner appearance)
+  - Same structure and visual style as professional timeline
+  - Supports multiple degrees/programs per institution
+  - Same expand/contract functionality for detailed descriptions
 
 **Design Improvements:**
 
@@ -230,14 +247,22 @@ featured: false # Not displayed but kept for future use
 **Data Structure:**
 
 ```yaml
-company: "Company Name"
-role: "Software Engineer"
-startDate: 2022-01
-endDate: 2024-01 # or "present"
+# Experience entry supporting multiple positions
+organization: "Company Name"
 location: "San Francisco, CA"
-description: "Role description..."
-technologies: ["Python", "AWS", "React"] # Used internally but not displayed
-achievements: ["Achievement 1", "Achievement 2"] # Shown in expanded view
+description: "Brief description of the organization/company"
+startDate: 2020-06-01  # Overall start date at organization
+endDate: 2024-01-01    # Overall end date (optional)
+positions:
+  - role: "Senior Software Engineer"
+    startDate: 2022-01-01
+    endDate: 2024-01-01
+    description: "Detailed description of this specific role..."
+  - role: "Software Engineer"
+    startDate: 2020-06-01
+    endDate: 2022-01-01
+    description: "Description of earlier role at same company..."
+order: 1  # For sorting timeline entries
 ```
 
 **Responsive Behavior:**
@@ -391,19 +416,40 @@ achievements: ["Achievement 1", "Achievement 2"] # Shown in expanded view
 ### Standard Animations
 
 ```typescript
-// Fade In Up
-initial: { opacity: 0, y: 20 }
+// Page Header Animation (About, Connect, WritingHeader, ExperienceHeader)
+initial: { opacity: 0, y: 30 }
 animate: { opacity: 1, y: 0 }
-transition: { duration: 0.5, ease: "easeOut" }
+transition: { duration: 0.6, ease: "easeOut" } // No delay
 
-// Stagger Children
-container: {
-  animate: { transition: { staggerChildren: 0.1 } }
+// Section Title Animation (Professional, Education)
+initial: { opacity: 0, y: 30 }
+animate: { opacity: 1, y: 0 }
+transition: { duration: 0.6, delay: 0.2, ease: "easeOut" } // Staggered delays
+
+// Timeline Card Animation
+initial: { opacity: 0, x: -20 }
+animate: { opacity: 1, x: 0 }
+transition: { duration: 0.5, delay: animationDelay, ease: "easeOut" }
+
+// Article Card Animation
+initial: { opacity: 0, x: -20 }
+animate: { opacity: 1, x: 0 }
+transition: { duration: 0.5, delay: 0.2 + index * 0.2, ease: "easeOut" }
+
+// Position Description Expand/Contract
+animate: {
+  height: isExpanded ? "auto" : 0,
+  opacity: isExpanded ? 1 : 0,
+  marginTop: isExpanded ? 8 : 0,
 }
+transition: { duration: 0.3, ease: "easeInOut" }
 
-// Hover Scale
-whileHover: { scale: 1.05 }
-transition: { type: "spring", stiffness: 300 }
+// Mobile Header Logo Tap (Mobile Only)
+// @media (max-width: 767px)
+.custom-header-name:active {
+  color: hsl(var(--accent-coral));
+  transition: color 0.1s ease;
+}
 ```
 
 ## Development Setup
@@ -457,22 +503,47 @@ const articles = defineCollection({
   }),
 });
 
-const projects = defineCollection({
+const experience = defineCollection({
   type: "content",
   schema: z.object({
-    title: z.string(),
-    category: z.string(),
-    date: z.date(),
-    description: z.string(),
-    technologies: z.array(z.string()),
-    image: z.string(),
-    liveUrl: z.string().optional(),
-    githubUrl: z.string().optional(),
-    featured: z.boolean().optional(),
+    organization: z.string(),
+    location: z.string(),
+    description: z.string(), // Organization description shown in header
+    startDate: z.date(), // Overall start date at organization
+    endDate: z.date().optional(), // Overall end date at organization
+    positions: z.array(
+      z.object({
+        role: z.string(),
+        startDate: z.date(),
+        endDate: z.date().optional(),
+        description: z.string(), // Position-specific description
+      })
+    ),
+    order: z.number(), // For sorting
   }),
 });
 
-export const collections = { articles, projects };
+const education = defineCollection({
+  type: "content",
+  schema: z.object({
+    organization: z.string(),
+    location: z.string(),
+    description: z.string(),
+    startDate: z.date(),
+    endDate: z.date().optional(),
+    positions: z.array(
+      z.object({
+        role: z.string(), // Degree type for education
+        startDate: z.date(),
+        endDate: z.date().optional(),
+        description: z.string(),
+      })
+    ),
+    order: z.number(),
+  }),
+});
+
+export const collections = { articles, experience, education };
 ```
 
 ### Build Scripts
@@ -681,6 +752,37 @@ The website has been successfully implemented and recently updated with enhanced
 - **Search indexing**: Working with Pagefind v1.4.0
 - **Type safety**: Full TypeScript support with strict mode
 - **Real contact info**: sean@meador.me, @smeador handles configured
+
+## Recent Major Updates
+
+### Content Model & Timeline Enhancements
+
+- **Multi-position support**: Timeline now supports multiple roles per organization
+- **Enhanced data structure**: Organizations can have multiple positions with individual descriptions
+- **Improved mobile layout**: Timeline line and nodes hidden on mobile for better space usage
+- **Animated expand/contract**: Smooth position description reveals with proper spacing
+- **Abbreviated durations**: Format like "2 yrs 3 mos" for cleaner display
+
+### Component Architecture Improvements
+
+- **Dedicated header components**: `WritingHeader.tsx` and `ExperienceHeader.tsx` replace generic `AnimatedTitle`
+- **Consistent animation patterns**: All page headers follow same timing (0.6s, no delay)
+- **Section title animations**: Staggered animations for Professional (0.2s) and Education (0.4s) titles
+- **Article card enhancements**: Responsive layout with stacked title/date on mobile
+
+### Mobile Experience Optimizations
+
+- **Header logo interaction**: Simple tap highlight instead of hover animation on mobile
+- **Mobile menu animation**: Smooth slide-down/up transitions with proper timing
+- **Responsive timeline headers**: Stacked organization info on mobile, row layout on desktop
+- **Improved spacing**: Reduced padding and margins for better mobile content density
+
+### Technical Improvements
+
+- **Content collections updated**: Support for `positions` array and `organization` field
+- **Animation consistency**: Standardized timing and easing across all components
+- **Type safety**: Proper TypeScript interfaces for multi-position timeline data
+- **Clean component separation**: Removed generic components in favor of page-specific ones
 
 ## Original Success Criteria
 
