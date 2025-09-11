@@ -3,14 +3,6 @@ const currentPath = Astro.url.pathname;
 ---
 
 <style>
-  /* Prevent header flash during navigation */
-  header,
-  header * {
-    backface-visibility: hidden;
-    transform: translateZ(0);
-    will-change: auto;
-  }
-
   /* Prevent default blue flash on load/tap */
   a.custom-header-name {
     color: inherit;
@@ -18,6 +10,9 @@ const currentPath = Astro.url.pathname;
   }
   a.custom-header-name,
   #mobile-menu-button {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    will-change: auto;
     -webkit-tap-highlight-color: transparent;
   }
 </style>
@@ -56,15 +51,6 @@ const currentPath = Astro.url.pathname;
       >
         Writing
       </a>
-      <!-- Portfolio temporarily hidden until fully implemented -->
-      <!-- <a 
-        href="/portfolio" 
-        class={`text-sm font-medium transition-colors hover:text-primary ${
-          currentPath === '/portfolio' ? 'text-primary' : 'text-muted-foreground'
-        }`}
-      >
-        Portfolio
-      </a> -->
       <a
         href="/experience"
         class={`text-sm font-medium transition-colors hover:text-primary ${
@@ -122,15 +108,6 @@ const currentPath = Astro.url.pathname;
       >
         Writing
       </a>
-      <!-- Portfolio temporarily hidden until fully implemented -->
-      <!-- <a 
-        href="/portfolio" 
-        class={`block py-3 text-sm font-medium transition-colors hover:text-primary ${
-          currentPath === '/portfolio' ? 'text-primary' : 'text-muted-foreground'
-        }`}
-      >
-        Portfolio
-      </a> -->
       <a
         href="/experience"
         class={`block py-3 text-sm font-medium transition-colors hover:text-primary ${
