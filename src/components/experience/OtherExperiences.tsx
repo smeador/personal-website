@@ -31,7 +31,7 @@ export default function OtherExperiences({ animationDelay = 0 }: OtherExperience
         {/* Timeline node - hidden on mobile */}
         <div className="absolute left-6 top-6 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg hidden md:block"></div>
 
-        <Card className="hover:shadow-lg transition-all duration-300">
+        <Card className="md:hover:shadow-lg transition-all duration-300">
           <CardHeader>
             <CardTitle className="text-xl font-semibold text-foreground">
               Notable Experiences & Achievements

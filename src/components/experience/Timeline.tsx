@@ -116,7 +116,7 @@ export default function Timeline({
         <div className="absolute left-6 top-6 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg hidden md:block"></div>
 
         <Card
-          className="hover:shadow-lg transition-all duration-300 cursor-pointer"
+          className="md:hover:shadow-lg transition-all duration-300 cursor-pointer"
           onClick={() => toggleExpanded(item.slug)}
         >
           <CardHeader>
