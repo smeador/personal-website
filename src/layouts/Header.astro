@@ -2,10 +2,23 @@
 const currentPath = Astro.url.pathname;
 ---
 
+<style>
+  /* Prevent flash of unstyled content */
+  .custom-header-name,
+  #mobile-menu-button {
+    visibility: hidden;
+  }
+  
+  .header-loaded .custom-header-name,
+  .header-loaded #mobile-menu-button {
+    visibility: visible;
+  }
+</style>
+
 <header class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
   <nav class="container mx-auto max-w-5xl px-4 h-16 flex items-center justify-between">
     <!-- Logo/Name -->
-    <a href="/" class="custom-header-name text-foreground hover:text-primary transition-colors opacity-0" style="opacity: 0;">
+    <a href="/" class="custom-header-name text-foreground hover:text-primary transition-colors">
       sean meador
     </a>
     
@@ -48,10 +61,9 @@ const currentPath = Astro.url.pathname;
     
     <!-- Mobile Menu Button -->
     <button 
-      class="md:hidden p-2 text-muted-foreground hover:text-primary transition-colors opacity-0"
+      class="md:hidden p-2 text-muted-foreground hover:text-primary transition-colors"
       id="mobile-menu-button"
       aria-label="Toggle mobile menu"
-      style="opacity: 0;"
     >
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -103,15 +115,12 @@ const currentPath = Astro.url.pathname;
   // Mobile menu toggle with animation
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
-  const headerName = document.querySelector('.custom-header-name');
+  const header = document.querySelector('header');
   let isMenuOpen = false;
   
-  // Show elements once JavaScript loads to prevent flash
-  if (mobileMenuButton) {
-    mobileMenuButton.style.opacity = '1';
-  }
-  if (headerName) {
-    headerName.style.opacity = '1';
+  // Add header-loaded class to show elements and prevent flash
+  if (header) {
+    header.classList.add('header-loaded');
   }
   
   function openMenu() {
