@@ -7,9 +7,6 @@ import vercel from "@astrojs/vercel";
 
 export default defineConfig({
   integrations: [mdx(), react(), tailwind()],
-
-  // TODO: Update with actual domain
   site: "https://meador.me",
-
   adapter: vercel(),
 });

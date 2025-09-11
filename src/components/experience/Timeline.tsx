@@ -67,8 +67,8 @@ export default function Timeline({ items, type }: TimelineProps) {
 
   return (
     <div className="relative">
-      {/* Timeline line */}
-      <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-border"></div>
+      {/* Timeline line - hidden on mobile */}
+      <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-border hidden md:block"></div>
       
       <div className="space-y-8">
         {items.map((item, index) => {
@@ -81,10 +81,10 @@ export default function Timeline({ items, type }: TimelineProps) {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="relative pl-20"
+              className="relative pl-0 md:pl-20"
             >
-              {/* Timeline node */}
-              <div className="absolute left-6 top-6 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg"></div>
+              {/* Timeline node - hidden on mobile */}
+              <div className="absolute left-6 top-6 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg hidden md:block"></div>
               
               <Card className="hover:shadow-lg transition-all duration-300">
                 <CardHeader 
