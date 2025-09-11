@@ -3,15 +3,12 @@ const currentPath = Astro.url.pathname;
 ---
 
 <style>
-  /* Prevent flash of unstyled content */
+  /* Prevent header flash during navigation */
   .custom-header-name,
   #mobile-menu-button {
-    visibility: hidden;
-  }
-  
-  .header-loaded .custom-header-name,
-  .header-loaded #mobile-menu-button {
-    visibility: visible;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    will-change: auto;
   }
 </style>
 
@@ -115,13 +112,7 @@ const currentPath = Astro.url.pathname;
   // Mobile menu toggle with animation
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
-  const header = document.querySelector('header');
   let isMenuOpen = false;
-  
-  // Add header-loaded class to show elements and prevent flash
-  if (header) {
-    header.classList.add('header-loaded');
-  }
   
   function openMenu() {
     if (mobileMenu) {
