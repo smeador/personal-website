@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import type { CollectionEntry } from "astro:content";
+import ToggleIcon from "@/components/icons/ToggleIcon";
 
 type TimelineItem =
   | CollectionEntry<"experience">
@@ -152,21 +153,7 @@ export default function Timeline({
               </div>
 
               <button className="text-muted-foreground hover:text-primary transition-colors">
-                <motion.svg
-                  animate={{ rotate: isExpanded ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </motion.svg>
+                <ToggleIcon isExpanded={isExpanded} />
               </button>
             </div>
           </CardHeader>
