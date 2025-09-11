@@ -41,8 +41,8 @@ export default function OtherExperiences({ animationDelay = 0 }: OtherExperience
             <ul className="space-y-3">
               {experiences.map((experience, index) => (
                 <li key={index} className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0"></div>
-                  <span className="text-sm text-muted-foreground leading-relaxed">
+                  <div className="w-1.5 h-1.5 bg-muted-content rounded-full mt-2 shrink-0"></div>
+                  <span className="text-sm text-muted-content leading-relaxed">
                     {experience}
                   </span>
                 </li>

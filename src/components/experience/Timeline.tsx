@@ -87,7 +87,7 @@ export default function Timeline({
           transition={{ duration: 0.3, ease: "easeInOut" }}
           className="overflow-hidden"
         >
-          <p className="text-foreground leading-relaxed text-sm">
+          <p className="text-muted-content leading-relaxed text-sm">
             {position.description}
           </p>
         </motion.div>
@@ -115,11 +115,11 @@ export default function Timeline({
         {/* Timeline node - hidden on mobile */}
         <div className="absolute left-6 top-6 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg hidden md:block"></div>
 
-        <Card className="hover:shadow-lg transition-all duration-300">
-          <CardHeader
-            className="cursor-pointer"
-            onClick={() => toggleExpanded(item.slug)}
-          >
+        <Card 
+          className="hover:shadow-lg transition-all duration-300 cursor-pointer"
+          onClick={() => toggleExpanded(item.slug)}
+        >
+          <CardHeader>
             <div className="flex items-start justify-between gap-4">
               <div className="flex flex-col">
                 <div className="flex flex-col space-y-2">
@@ -145,7 +145,7 @@ export default function Timeline({
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="overflow-hidden"
                   >
-                    <p className="text-sm text-foreground leading-relaxed pt-3">
+                    <p className="text-sm text-muted-content leading-relaxed pt-3">
                       {itemData.description}
                     </p>
                   </motion.div>
