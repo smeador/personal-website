@@ -16,6 +16,7 @@ const professional = defineCollection({
   type: "content",
   schema: z.object({
     organization: z.string(),
+    organizationUrl: z.string().url().optional(), // Optional URL for organization
     location: z.string(),
     description: z.string(),
     startDate: z.date(), // Overall start date at company
@@ -36,6 +37,7 @@ const education = defineCollection({
   type: "content",
   schema: z.object({
     organization: z.string(),
+    organizationUrl: z.string().url().optional(), // Optional URL for organization
     location: z.string(),
     description: z.string(),
     startDate: z.date(), // Overall start date at company

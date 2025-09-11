@@ -124,9 +124,23 @@ export default function Timeline({
               <div className="flex flex-col">
                 <div className="flex flex-col space-y-2">
                   <div className="flex items-center gap-4">
-                    <CardTitle className="text-xl font-semibold text-foreground">
-                      {itemData.organization}
-                    </CardTitle>
+                    {itemData.organizationUrl ? (
+                      <CardTitle className="text-xl font-semibold text-foreground">
+                        <a
+                          href={itemData.organizationUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:text-primary transition-colors"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          {itemData.organization}
+                        </a>
+                      </CardTitle>
+                    ) : (
+                      <CardTitle className="text-xl font-semibold text-foreground">
+                        {itemData.organization}
+                      </CardTitle>
+                    )}
                     <div className="text-sm text-muted-foreground">
                       {getDuration(item.data.startDate, item.data.endDate)}
                     </div>
