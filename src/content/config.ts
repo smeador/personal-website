@@ -12,7 +12,7 @@ const articles = defineCollection({
   }),
 });
 
-const experience = defineCollection({
+const professional = defineCollection({
   type: "content",
   schema: z.object({
     organization: z.string(),
@@ -52,4 +52,4 @@ const education = defineCollection({
   }),
 });
 
-export const collections = { articles, experience, education };
+export const collections = { articles, professional, education };

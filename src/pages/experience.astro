@@ -7,11 +7,11 @@ import OtherExperiences from "../components/experience/OtherExperiences.tsx";
 import { getCollection } from "astro:content";
 
 // Fetch experience and education collections
-const experienceEntries = await getCollection("experience");
+const professionalEntries = await getCollection("professional");
 const educationEntries = await getCollection("education");
 
 // Sort by order field
-const sortedExperience = experienceEntries.sort(
+const sortedProfessional = professionalEntries.sort(
   (a, b) => a.data.order - b.data.order
 );
 const sortedEducation = educationEntries.sort(
@@ -41,8 +41,8 @@ const sortedEducation = educationEntries.sort(
         </div>
 
         <Timeline
-          items={sortedExperience}
-          type="experience"
+          items={sortedProfessional}
+          type="professional"
           animationDelay={0.2}
           client:load
         />

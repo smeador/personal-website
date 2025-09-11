@@ -12,13 +12,13 @@ import type { CollectionEntry } from "astro:content";
 import ToggleIcon from "@/components/icons/ToggleIcon";
 
 type TimelineItem =
-  | CollectionEntry<"experience">
+  | CollectionEntry<"professional">
   | CollectionEntry<"education">;
 
 type Position = TimelineItem["data"]["positions"][number];
 interface TimelineProps {
   items: TimelineItem[];
-  type: "experience" | "education";
+  type: "professional" | "education";
   animationDelay?: number;
 }
 
@@ -115,7 +115,7 @@ export default function Timeline({
         {/* Timeline node - hidden on mobile */}
         <div className="absolute left-6 top-6 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg hidden md:block"></div>
 
-        <Card 
+        <Card
           className="hover:shadow-lg transition-all duration-300 cursor-pointer"
           onClick={() => toggleExpanded(item.slug)}
         >
