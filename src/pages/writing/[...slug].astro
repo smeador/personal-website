@@ -17,10 +17,10 @@ const { title, date, excerpt } = article.data;
 ---
 
 <BaseLayout title={title} description={excerpt}>
-  <article class="py-16 px-4" data-pagefind-body>
-    <div class="container mx-auto max-w-4xl">
+  <article class="pt-8 md:pt-2 pb-16" data-pagefind-body>
+    <div class="container mx-auto max-w-5xl px-4">
       <!-- Article Header -->
-      <header class="text-center mb-12" data-pagefind-meta="title">
+      <header class="text-center mb-12 mt-2 md:mt-8" data-pagefind-meta="title">
         <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight">
           {title}
         </h1>
