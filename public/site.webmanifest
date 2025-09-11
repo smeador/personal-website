@@ -1,0 +1,26 @@
+{
+  "name": "Sean Meador",
+  "short_name": "Sean Meador",
+  "description": "Personal website with my info, writing, and professional experience",
+  "icons": [
+    {
+      "src": "/favicons/favicon.ico",
+      "sizes": "16x16 32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/favicons/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#f97316",
+  "background_color": "#fef7f0",
+  "display": "minimal-ui",
+  "start_url": "/"
+}
