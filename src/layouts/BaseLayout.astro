@@ -12,6 +12,11 @@ const {
   title,
   description = "Personal website with my info, writing, and professional experience",
 } = Astro.props;
+
+// Get the current URL to help with favicon base path
+const currentURL = new URL(Astro.request.url);
+const isProduction = import.meta.env.PROD;
+const baseURL = isProduction ? 'https://meador.me' : `${currentURL.protocol}//${currentURL.host}`;
 ---
 
 <!doctype html>
@@ -19,20 +24,19 @@ const {
   <head>
     <meta charset="utf-8" />
     <!-- Favicons for all browsers -->
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="icon" href="/favicons/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
-    <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="shortcut icon" href={`${baseURL}/favicon.ico`} />
+    <link rel="icon" href={`${baseURL}/favicons/favicon.ico`} sizes="any" />
+    <link rel="icon" type="image/svg+xml" href={`${baseURL}/favicons/favicon.svg`} />
+    <link rel="apple-touch-icon" href={`${baseURL}/favicons/apple-touch-icon.png`} />
+    <link rel="manifest" href={`${baseURL}/site.webmanifest`} />
 
     <!-- Mobile Safari specific -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta
-      name="apple-mobile-web-app-title"
-      content="Sean Meador - Personal Website"
-    />
+    <meta name="apple-mobile-web-app-title" content="Sean Meador - Personal Website" />
+    <meta name="msapplication-TileColor" content="#faf8f6" />
+    <meta name="theme-color" content="#faf8f6" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
 
