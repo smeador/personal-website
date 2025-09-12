@@ -12,11 +12,6 @@ const {
   title,
   description = "Personal website with my info, writing, and professional experience",
 } = Astro.props;
-
-// Get the current URL to help with favicon base path
-const currentURL = new URL(Astro.request.url);
-const isProduction = import.meta.env.PROD;
-const baseURL = isProduction ? 'https://meador.me' : `${currentURL.protocol}//${currentURL.host}`;
 ---
 
 <!doctype html>
@@ -24,11 +19,12 @@ const baseURL = isProduction ? 'https://meador.me' : `${currentURL.protocol}//${
   <head>
     <meta charset="utf-8" />
     <!-- Favicons for all browsers -->
-    <link rel="shortcut icon" href={`${baseURL}/favicon.ico`} />
-    <link rel="icon" href={`${baseURL}/favicons/favicon.ico`} sizes="any" />
-    <link rel="icon" type="image/svg+xml" href={`${baseURL}/favicons/favicon.svg`} />
-    <link rel="apple-touch-icon" href={`${baseURL}/favicons/apple-touch-icon.png`} />
-    <link rel="manifest" href={`${baseURL}/site.webmanifest`} />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Mobile Safari specific -->
     <meta name="mobile-web-app-capable" content="yes" />
