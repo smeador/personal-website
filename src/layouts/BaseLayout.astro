@@ -2,6 +2,7 @@
 import Header from "./Header.astro";
 import Footer from "./Footer.astro";
 import "../styles/global.css";
+import Analytics from "@vercel/analytics/astro";
 
 export interface Props {
   title: string;
@@ -30,7 +31,10 @@ const {
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="Sean Meador - Personal Website" />
+    <meta
+      name="apple-mobile-web-app-title"
+      content="Sean Meador - Personal Website"
+    />
     <meta name="msapplication-TileColor" content="#faf8f6" />
     <meta name="theme-color" content="#faf8f6" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
