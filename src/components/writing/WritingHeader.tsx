@@ -10,7 +10,9 @@ export default function WritingHeader() {
     >
       <h1 className="section-title mb-4 md:mb-6">writing.</h1>
       <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-medium mb-8 md:mb-10">
-        Thoughts on engineering leadership, technology, and building teams that create meaningful software.
+        Thoughts and learnings on building products, scaling startups, and
+        leading engineering teams. Technical deep dives in full-stack and AI
+        engineering. Or whatever other interesting topics come to mind!
       </p>
     </motion.div>
   );

@@ -38,8 +38,8 @@ export default function Hero() {
             <p className="text-2xl md:text-3xl lg:text-4xl text-foreground font-medium">
               Hello, I'm Sean,
             </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-coral tracking-tight leading-tight">
-              Engineering Leader!
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-coral tracking-tight leading-tight">
+              Engineering Leader
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground font-medium">
               based in Austin, TX.
