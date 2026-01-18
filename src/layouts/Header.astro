@@ -29,6 +29,16 @@ import MenuIcon from "../components/icons/MenuIcon.tsx";
         Home
       </a>
       <a
+        href="/about"
+        class={`text-sm font-medium transition-colors hover:text-primary ${
+          currentPath === "/about"
+            ? "text-primary"
+            : "text-muted-foreground"
+        }`}
+      >
+        About
+      </a>
+      <a
         href="/writing"
         class={`text-sm font-medium transition-colors hover:text-primary ${
           currentPath.startsWith("/writing")
@@ -75,6 +85,16 @@ import MenuIcon from "../components/icons/MenuIcon.tsx";
         }`}
       >
         Home
+      </a>
+      <a
+        href="/about"
+        class={`block py-3 text-sm font-medium transition-colors hover:text-primary ${
+          currentPath === "/about"
+            ? "text-primary"
+            : "text-muted-foreground"
+        }`}
+      >
+        About
       </a>
       <a
         href="/writing"

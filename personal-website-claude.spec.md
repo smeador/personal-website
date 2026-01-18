@@ -36,6 +36,7 @@ Build a modern, performant personal website that showcases writing, projects, an
 ├── src/
 │   ├── pages/
 │   │   ├── index.astro          // Home page
+│   │   ├── about.astro          // About page with long-form biography
 │   │   ├── writing/
 │   │   │   ├── index.astro      // Writing listing page
 │   │   │   └── [...slug].astro  // Individual article pages
@@ -51,7 +52,7 @@ Build a modern, performant personal website that showcases writing, projects, an
 │   │   ├── ui/                  // shadcn/ui components
 │   │   ├── home/
 │   │   │   ├── Hero.tsx         // Profile & intro with animations
-│   │   │   ├── About.tsx        // About section with animation
+│   │   │   ├── Welcome.tsx      // Welcome section with overview and links
 │   │   │   └── Connect.tsx      // Contact section with animation
 │   │   ├── writing/
 │   │   │   ├── ArticleCard.tsx  // Animated article cards
@@ -78,7 +79,7 @@ Build a modern, performant personal website that showcases writing, projects, an
 
 - **Position**: Fixed at top, with backdrop blur on scroll
 - **Container**: max-w-5xl container matching main content width
-- **Links**: Home, Writing, Experience
+- **Links**: Home, About, Writing, Experience
 - **Style**: Minimal, clean, with subtle hover animations
 - **Mobile**: Responsive hamburger menu with consistent container width
 - **Active state**: Highlight current page
@@ -114,9 +115,10 @@ Build a modern, performant personal website that showcases writing, projects, an
   - **Right column**: Large circular profile image (264x264px) with organic gradient background blur
   - Clean, minimal design with coral accent colors
   - Bold typography with Engineering Leader emphasized in coral
-- **About Section**:
+- **Welcome Section**:
   - Full-width section below hero
-  - Professional description of engineering leadership experience
+  - Casual yet professional greeting and website overview
+  - Includes contextual links to About, Writing, and Experience pages
   - Left-aligned content with consistent margins
 - **Connect Section**:
   - Custom SVG icons (not emojis) for each platform
@@ -138,7 +140,30 @@ Build a modern, performant personal website that showcases writing, projects, an
 - Profile image with organic background shape animation
 - Smooth scroll behavior and hover effects throughout
 
-### 3. Writing Page
+### 3. About Page
+
+**Layout**: Single-column prose layout with consistent max-w-5xl container
+
+**Content:**
+
+- **Page Header**: "about." title matching site design patterns
+- **Long-form Biography**:
+  - Personal journey and professional philosophy
+  - Engineering leadership approach and values
+  - Interests beyond technology
+  - Casual yet professional tone
+  - Engaging and approachable writing style
+- **Experience Link**: Call-to-action link to Experience page at the end
+- Same background gradient as home page for visual consistency
+
+**Design:**
+
+- Clean, readable prose layout with proper typography
+- Generous spacing and line height for optimal readability
+- Consistent with overall site aesthetic
+- Mobile-responsive with appropriate padding
+
+### 4. Writing Page
 
 **Layout**:
 
@@ -170,7 +195,7 @@ readingTime: "5 min" # Not displayed but kept for future use
 featured: false # Not displayed but kept for future use
 ```
 
-### 4. Individual Article Page
+### 5. Individual Article Page
 
 **Layout**:
 
@@ -198,7 +223,7 @@ featured: false # Not displayed but kept for future use
 - Social sharing links
 - Comment/feedback sections
 
-### 5. Experience Page
+### 6. Experience Page
 
 **Layout**: Left-aligned header matching Writing page style with compact responsive spacing
 
@@ -755,6 +780,15 @@ The website has been successfully implemented and recently updated with enhanced
 
 ## Recent Major Updates
 
+### About Page & Welcome Section Addition
+
+- **New About page**: Dedicated page with long-form biography and personal story
+- **Welcome section**: Replaced About section on home page with casual, professional overview
+- **Enhanced navigation**: Added About link to header navigation (Home, About, Writing, Experience)
+- **Content reorganization**: Separated detailed biography from home page intro for better content structure
+- **Contextual linking**: Welcome section provides clear paths to About, Writing, and Experience pages
+- **Consistent design**: About page uses same prose styling and background gradients as rest of site
+
 ### Content Model & Timeline Enhancements
 
 - **Multi-position support**: Timeline now supports multiple roles per organization
@@ -788,7 +822,7 @@ The website has been successfully implemented and recently updated with enhanced
 
 The website meets all original success criteria:
 
-1. ✅ All five pages are implemented and functional
+1. ✅ All six pages are implemented and functional (Home, About, Writing, Article, Experience)
 2. ✅ Search works across all content
 3. ✅ Mobile responsive design is flawless
 4. ⏳ Page load time < 3 seconds on 3G (ready for testing)
