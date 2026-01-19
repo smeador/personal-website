@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
+import { useIsMobile } from "@/lib/useIsMobile";
 
 export default function Hero() {
+  const { initialIsMobile } = useIsMobile();
+
   return (
     <div>
       {/* Mobile: Profile above title, Desktop: Side by side */}
@@ -29,8 +32,9 @@ export default function Hero() {
 
         {/* Text content - Second on mobile, First on desktop */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
+          key={initialIsMobile ? "mobile" : "desktop"}
+          initial={{ opacity: 0, x: initialIsMobile ? 0 : -50, y: initialIsMobile ? 20 : 0 }}
+          animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center md:text-left order-2 md:order-1"
         >

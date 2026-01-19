@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import type { CollectionEntry } from "astro:content";
 import ToggleIcon from "@/components/icons/ToggleIcon";
+import { useIsMobile } from "@/lib/useIsMobile";
 
 type TimelineItem =
   | CollectionEntry<"professional">
@@ -28,6 +29,7 @@ export default function Timeline({
   animationDelay = 0,
 }: TimelineProps) {
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
+  const { initialIsMobile } = useIsMobile();
 
   const toggleExpanded = (id: string) => {
     setExpandedItems((prev) =>
@@ -102,9 +104,9 @@ export default function Timeline({
 
     return (
       <motion.div
-        key={item.slug}
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
+        key={`${item.slug}-${initialIsMobile ? "mobile" : "desktop"}`}
+        initial={{ opacity: 0, x: initialIsMobile ? 0 : -20, y: initialIsMobile ? 20 : 0 }}
+        animate={{ opacity: 1, x: 0, y: 0 }}
         transition={{
           duration: 0.5,
           delay: animationDelay,

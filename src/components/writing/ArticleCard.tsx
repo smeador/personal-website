@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { CollectionEntry } from "astro:content";
+import { useIsMobile } from "@/lib/useIsMobile";
 
 interface ArticleCardProps {
   article: CollectionEntry<"articles">;
@@ -9,11 +10,13 @@ interface ArticleCardProps {
 
 export default function ArticleCard({ article, index }: ArticleCardProps) {
   const { title, date, excerpt } = article.data;
+  const { initialIsMobile } = useIsMobile();
 
   return (
     <motion.article
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
+      key={`${article.slug}-${initialIsMobile ? "mobile" : "desktop"}`}
+      initial={{ opacity: 0, x: initialIsMobile ? 0 : -20, y: initialIsMobile ? 20 : 0 }}
+      animate={{ opacity: 1, x: 0, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 + index * 0.2, ease: "easeOut" }}
       className="group"
     >
