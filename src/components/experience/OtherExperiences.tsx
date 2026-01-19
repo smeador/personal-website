@@ -1,11 +1,14 @@
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useIsMobile } from "@/lib/useIsMobile";
 
 interface OtherExperiencesProps {
   animationDelay?: number;
 }
 
 export default function OtherExperiences({ animationDelay = 0 }: OtherExperiencesProps) {
+  const { initialIsMobile } = useIsMobile();
+
   const experiences = [
     "Led technical workshops and mentoring sessions for junior developers",
     "Contributed to open source projects and technical community initiatives", 
@@ -19,8 +22,9 @@ export default function OtherExperiences({ animationDelay = 0 }: OtherExperience
       <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-border hidden md:block"></div>
       
       <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
+        key={initialIsMobile ? "mobile" : "desktop"}
+        initial={{ opacity: 0, x: initialIsMobile ? 0 : -20, y: initialIsMobile ? 20 : 0 }}
+        animate={{ opacity: 1, x: 0, y: 0 }}
         transition={{
           duration: 0.5,
           delay: animationDelay,
