@@ -89,7 +89,7 @@ export default function Timeline({
           transition={{ duration: 0.3, ease: "easeInOut" }}
           className="overflow-hidden"
         >
-          <p className="text-muted-content leading-relaxed text-sm">
+          <p className="text-muted-content leading-relaxed text-sm whitespace-pre-line">
             {position.description}
           </p>
         </motion.div>
@@ -161,7 +161,7 @@ export default function Timeline({
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="overflow-hidden"
                   >
-                    <p className="text-sm text-muted-content leading-relaxed pt-3">
+                    <p className="text-sm text-muted-content leading-relaxed pt-3 whitespace-pre-line">
                       {itemData.description}
                     </p>
                   </motion.div>
