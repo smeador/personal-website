@@ -29,14 +29,14 @@ import MenuIcon from "../components/icons/MenuIcon.tsx";
         Home
       </a>
       <a
-        href="/writing"
+        href="/about"
         class={`text-sm font-medium transition-colors hover:text-primary ${
-          currentPath.startsWith("/writing")
+          currentPath === "/about"
             ? "text-primary"
             : "text-muted-foreground"
         }`}
       >
-        Writing
+        About
       </a>
       <a
         href="/experience"
@@ -47,6 +47,16 @@ import MenuIcon from "../components/icons/MenuIcon.tsx";
         }`}
       >
         Experience
+      </a>
+      <a
+        href="/writing"
+        class={`text-sm font-medium transition-colors hover:text-primary ${
+          currentPath.startsWith("/writing")
+            ? "text-primary"
+            : "text-muted-foreground"
+        }`}
+      >
+        Writing
       </a>
     </div>
 
@@ -77,14 +87,14 @@ import MenuIcon from "../components/icons/MenuIcon.tsx";
         Home
       </a>
       <a
-        href="/writing"
+        href="/about"
         class={`block py-3 text-sm font-medium transition-colors hover:text-primary ${
-          currentPath.startsWith("/writing")
+          currentPath === "/about"
             ? "text-primary"
             : "text-muted-foreground"
         }`}
       >
-        Writing
+        About
       </a>
       <a
         href="/experience"
@@ -95,6 +105,16 @@ import MenuIcon from "../components/icons/MenuIcon.tsx";
         }`}
       >
         Experience
+      </a>
+      <a
+        href="/writing"
+        class={`block py-3 text-sm font-medium transition-colors hover:text-primary ${
+          currentPath.startsWith("/writing")
+            ? "text-primary"
+            : "text-muted-foreground"
+        }`}
+      >
+        Writing
       </a>
     </div>
   </div>

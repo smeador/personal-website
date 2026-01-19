@@ -1,0 +1,96 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { motion } from "framer-motion";
+---
+
+<BaseLayout
+  title="About - Sean Meador"
+  description="Learn more about Sean Meador's journey as an engineering leader, passion for technology, and approach to building high-performing teams."
+>
+  <section class="pt-8 pb-20">
+    <div class="container mx-auto max-w-5xl px-4">
+      <!-- Page Header -->
+      <div class="mb-12">
+        <h1 class="section-title mb-4">about.</h1>
+      </div>
+
+      <!-- Long-form Biography -->
+      <div class="prose prose-lg max-w-none">
+        <div class="space-y-6 text-muted-foreground leading-relaxed">
+          <p class="text-xl font-medium text-foreground">
+            Hey there! I'm Sean Meador, an engineering leader based in the heart
+            of Austin, Texas.
+          </p>
+
+          <p>
+            My journey in technology started with a simple curiosity about how
+            things work. That curiosity evolved into a passion for building
+            elegant software solutions and, more importantly, cultivating teams
+            that can tackle the most challenging technical problems with
+            creativity and precision.
+          </p>
+
+          <p>
+            Over the years, I've had the privilege of leading engineering teams
+            through transformative projects—from architecting scalable systems
+            that serve millions of users to establishing engineering cultures
+            that prioritize both innovation and sustainability. I believe that
+            the best technology is built by diverse, empowered teams who aren't
+            afraid to challenge conventional thinking.
+          </p>
+
+          <p>
+            What drives me isn't just the code we write or the systems we
+            build—it's the impact we create and the people we help along the
+            way. Whether I'm mentoring emerging engineers, diving deep into
+            system architecture, or exploring the latest developments in our
+            field, I'm constantly energized by the opportunity to learn and
+            grow.
+          </p>
+
+          <p>
+            Beyond the technical realm, I'm fascinated by the intersection of
+            technology and human experience. I believe our industry's greatest
+            innovations come not from technology alone, but from understanding
+            the real problems people face and crafting thoughtful solutions that
+            make their lives better.
+          </p>
+
+          <p>
+            When I'm not knee-deep in code or leading team discussions, you
+            might find me exploring Austin's vibrant tech scene, writing about
+            engineering leadership and emerging technologies, or simply enjoying
+            the Texas sunshine with a good book.
+          </p>
+
+          <p>
+            I'm always eager to connect with fellow technologists, ambitious
+            teams, and anyone passionate about building the future. If you're
+            working on something interesting or just want to chat about
+            technology, leadership, or the ever-evolving landscape of software
+            engineering, I'd love to hear from you.
+          </p>
+
+          <!-- Link to Experience -->
+          <div class="mt-12 pt-6 border-t border-border">
+            <p class="text-lg">
+              Want to learn more about my professional background?{" "}
+              <a
+                href="/experience"
+                class="text-primary hover:underline font-medium"
+              >
+                Check out my experience →
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clean gradient background -->
+  <div
+    class="fixed inset-0 -z-10 bg-gradient-to-br from-peach/10 via-cream/5 to-blue/8 pointer-events-none"
+  >
+  </div>
+</BaseLayout>
