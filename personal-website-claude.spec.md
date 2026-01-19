@@ -437,28 +437,61 @@ order: 1  # For sorting timeline entries
 - **Purposeful**: Each animation should have a clear purpose
 - **Performant**: Use transform and opacity for animations
 - **Accessible**: Respect prefers-reduced-motion
+- **Responsive**: Animation direction adapts to layout
+
+### Responsive Animation Direction
+
+Animations use different directions based on viewport size to match the layout:
+
+- **Desktop (≥768px)**: Horizontal slide-in from left (`x: -20` or `x: -50`)
+- **Mobile (<768px)**: Vertical fade-up (`y: 20`)
+
+This is implemented via the `useIsMobile` hook (`src/lib/useIsMobile.ts`) which:
+1. Uses `useSyncExternalStore` for synchronous viewport detection
+2. Captures the initial viewport size on first client render via `useRef`
+3. Returns `initialIsMobile` which doesn't change on resize (prevents re-animation)
+
+**Components using responsive animations:**
+- `Hero.tsx` - "Hello I'm Sean..." text section
+- `Timeline.tsx` - Experience/education cards
+- `ArticleCard.tsx` - Writing page article cards
+- `SectionTitle.tsx` - Section headers on experience page
+- `OtherExperiences.tsx` - Other experiences card
+
+**Key prop pattern**: Components use a `key` prop based on `initialIsMobile` to ensure the correct animation plays after SSR hydration, without re-animating on window resize.
+
+```typescript
+// Example usage
+const { initialIsMobile } = useIsMobile();
+
+<motion.div
+  key={initialIsMobile ? "mobile" : "desktop"}
+  initial={{ opacity: 0, x: initialIsMobile ? 0 : -20, y: initialIsMobile ? 20 : 0 }}
+  animate={{ opacity: 1, x: 0, y: 0 }}
+  transition={{ duration: 0.5, ease: "easeOut" }}
+>
+```
 
 ### Standard Animations
 
 ```typescript
-// Page Header Animation (About, Connect, WritingHeader, ExperienceHeader)
+// Page Header Animation (WritingHeader, ExperienceHeader)
 initial: { opacity: 0, y: 30 }
 animate: { opacity: 1, y: 0 }
-transition: { duration: 0.6, ease: "easeOut" } // No delay
+transition: { duration: 0.6, ease: "easeOut" }
 
-// Section Title Animation (Professional, Education)
-initial: { opacity: 0, y: 30 }
-animate: { opacity: 1, y: 0 }
-transition: { duration: 0.6, delay: 0.2, ease: "easeOut" } // Staggered delays
+// Staggered Content (e.g., About page title + body)
+// Title: no delay
+// Body: delay: 0.15
 
-// Timeline Card Animation
-initial: { opacity: 0, x: -20 }
-animate: { opacity: 1, x: 0 }
+// Timeline Card Animation (responsive)
+initial: { opacity: 0, x: initialIsMobile ? 0 : -20, y: initialIsMobile ? 20 : 0 }
+animate: { opacity: 1, x: 0, y: 0 }
 transition: { duration: 0.5, delay: animationDelay, ease: "easeOut" }
 
-// Article Card Animation
-initial: { opacity: 0, x: -20 }
-animate: { opacity: 1, x: 0 }
+// Article Card Animation (responsive, staggered)
+initial: { opacity: 0, x: initialIsMobile ? 0 : -20, y: initialIsMobile ? 20 : 0 }
+animate: { opacity: 1, x: 0, y: 0 }
 transition: { duration: 0.5, delay: 0.2 + index * 0.2, ease: "easeOut" }
 
 // Position Description Expand/Contract
