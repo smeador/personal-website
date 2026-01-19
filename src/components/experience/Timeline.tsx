@@ -41,6 +41,7 @@ export default function Timeline({
     return date.toLocaleDateString("en-US", {
       month: "short",
       year: "numeric",
+      timeZone: "UTC",
     });
   };
 
@@ -71,10 +72,8 @@ export default function Timeline({
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
           <h4 className="font-semibold text-foreground">{position.role}</h4>
           <div className="text-sm text-muted-foreground">
-            {position.startDate && formatDate(new Date(position.startDate))} -{" "}
-            {position.endDate
-              ? formatDate(new Date(position.endDate))
-              : "Present"}
+            {formatDate(position.startDate)} -{" "}
+            {position.endDate ? formatDate(position.endDate) : "Present"}
             {" • "}
             {getDuration(position.startDate, position.endDate)}
           </div>
@@ -98,7 +97,7 @@ export default function Timeline({
   };
 
   const renderTimelineCard = (item: TimelineItem) => {
-    const itemData = item.data; // TODO: fix this type conversion
+    const itemData = item.data;
     const positions = itemData.positions;
     const isExpanded = expandedItems.includes(item.slug);
 
