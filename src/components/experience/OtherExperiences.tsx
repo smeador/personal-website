@@ -9,11 +9,49 @@ interface OtherExperiencesProps {
 export default function OtherExperiences({ animationDelay = 0 }: OtherExperiencesProps) {
   const { initialIsMobile } = useIsMobile();
 
+  const linkClass = "underline decoration-muted-foreground/50 hover:text-primary hover:decoration-primary transition-colors";
+
   const experiences = [
-    "Led technical workshops and mentoring sessions for junior developers",
-    "Contributed to open source projects and technical community initiatives", 
-    "Participated in hackathons and technical conferences as both attendee and speaker",
-    "Built and maintained personal projects demonstrating continuous learning"
+    <>
+      Technical advisor to multiple early-stage startups (2024-2025): 
+      The Weet, a finance app which aggregates expert stock predictions;
+      Proxi, a social networking app for creating warm intros.
+    </>,
+    <>
+      Dub Hacks (2014): Presented on{" "}
+      <a href="/images/experience-dubhacks-presentation.jpg" target="_blank" rel="noopener noreferrer" className={linkClass}>
+        client-server architecture and design
+      </a>{" "}
+      at the hackathon for the University of Washington.
+    </>,
+    <>
+      Published paper in SPIE (2009):{" "}
+      <a href="https://www.spiedigitallibrary.org/conference-proceedings-of-spie/7240/72401O/Painted-or-printed-Correlation-analysis-of-the-brickwork-in-Jan/10.1117/12.817186.short" target="_blank" rel="noopener noreferrer" className={linkClass}>
+        Painted or Printed? Correlation analysis of brickwork…
+      </a>{" "}
+      w/ Prof. David Stork and Petria Nobel. Used computational image analysis
+      to explore patterns in a classical art piece.
+    </>,
+    <>
+      Graduate project (2008):{" "}
+      <a href="/docs/project-interactive-relighting.pdf" target="_blank" rel="noopener noreferrer" className={linkClass}>
+        Interactive Lighting of Macro Photography
+      </a>{" "}
+      w/ Alexis Chan. Implemented a GUI and algorithms to relight macro
+      photography dynamically.
+    </>,
+    <>
+      [For fun] Swift Summit (2017): The conference happened to fall on
+      Halloween, so I role-played as a{" "}
+      <a href="/images/experience-apple-presenter.jpg" target="_blank" rel="noopener noreferrer" className={linkClass}>
+        fan-favorite Apple presenter
+      </a>{" "}
+      and made an{" "}
+      <a href="/images/experience-swift-summit-stage.jpg" target="_blank" rel="noopener noreferrer" className={linkClass}>
+        on-stage guest appearance
+      </a>
+      .
+    </>,
   ];
 
   return (
