@@ -16,7 +16,7 @@ export default function ExperienceHeader() {
         </div>
         <div className="hidden md:block md:ml-8">
           <a
-            href="/resume.pdf"
+            href="/docs/resume-sean-meador.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="resume-button inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium text-sm"
@@ -35,7 +35,7 @@ export default function ExperienceHeader() {
       {/* Mobile Resume Button */}
       <div className="md:hidden mb-8 md:mb-10">
         <a
-          href="/resume.pdf"
+          href="/docs/resume-sean-meador.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="resume-button inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium text-sm"
