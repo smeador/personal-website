@@ -28,8 +28,8 @@ export default function ExperienceHeader() {
       </div>
 
       <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-medium mb-6">
-        My professional journey in software engineering, from early career
-        foundations to leading complex technical initiatives.
+        My professional journey and experience so far. Yes, this is also on
+        LinkedIn but I had fun creating this page.
       </p>
 
       {/* Mobile Resume Button */}
