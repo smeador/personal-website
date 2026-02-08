@@ -20,37 +20,38 @@ export default function AboutSection() {
       >
         <div className="space-y-6 text-muted-foreground leading-relaxed">
           <p>
-            I'm a seasoned engineering leader with over 15 years of experience
-            building products, scaling systems, and managing teams. I embrace
-            lifelong learning, and my career has taken me from mobile
-            development to full-stack and systems engineering as I've been eager 
-            to grow my expertise in new areas.
+            I'm a mission-driven engineering leader with over 15 years of
+            experience building apps, scaling systems, and managing teams. I
+            embrace lifelong learning, and my career has taken me from mobile
+            development to full-stack and systems engineering as I've followed
+            my curiosity to new domains.
           </p>
 
           <p>
-            I'm entrepreneurial by nature, and in addition to starting my own
-            company, I've joined multiple successful startups as an early-stage
-            employee. I've developed several products from zero-to-one, and led
-            teams from a few people to full departments as these products
-            scaled. I thrive in fast-paced environments and overcoming
-            organizational and operational challenges to achieve meaningful
-            results.
+            I'm entrepreneurial by nature and thrive in fast-paced environments.
+            I founded my own company out of college and joined two high-growth
+            startups as an early employee. I've developed several products from
+            zero-to-one, and led teams from a few people to full departments. I
+            have a track record of scaling teams and solving organizational and
+            operational challenges to achieve durable results.
           </p>
 
           <p>
-            I'm currently focused on applying AI in enterprise settings, using
+            I love the process of diving deep into a problem and collaborating
+            with Product and customers to create truly useful solutions. I'm
+            currently focused on applying AI in enterprise settings, using
             thoughtfully designed interfaces and domain expertise to solve
-            real-world business problems. I love the process of diving deep into
-            a problem and collaborating with Product and customers to create
-            truly useful solutions.
+            real-world problems. With my work at Afresh, this has resulted in
+            20% average waste reduction for retailers and over 200 million
+            pounds of food waste averted in total.
           </p>
 
           <p>
             I believe great engineering starts and ends with great people. I
-            strive to create cultures based on trust, ownership, and curiosity,
-            where people feel connected and empowered to do their best work.
-            I've had the privilege to be part of and lead teams with incredibly
-            talented engineers who care about their craft and each other.
+            foster cultures based on trust, ownership, and curiosity, where
+            people feel connected and empowered to do their best work. I've had
+            the privilege to be part of and lead teams with incredibly talented
+            engineers who care about their craft and each other.
           </p>
 
           <p>
