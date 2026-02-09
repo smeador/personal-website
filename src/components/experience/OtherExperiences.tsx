@@ -13,7 +13,7 @@ export default function OtherExperiences({ animationDelay = 0 }: OtherExperience
 
   const experiences = [
     <>
-      Technical advisor to multiple early-stage startups (2024-2025): 
+      Technical advisor to multiple early-stage startups throughout 2024 and 2025: 
       The Weet, a finance app which aggregates expert stock predictions;
       Proxi, a social networking app for creating warm intros.
     </>,
