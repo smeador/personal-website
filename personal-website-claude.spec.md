@@ -56,6 +56,10 @@ public/
 └── resume.pdf
 ```
 
+## Responsive Behavior
+
+The `md` breakpoint (768px) is used consistently throughout for all layout switches — header, hero, timeline, article cards, footer, and resume button. Mobile-first styles apply below `md`; desktop layouts apply at `md` and above.
+
 ## Pages Specification
 
 ### Navigation Header (Global)
@@ -133,6 +137,7 @@ public/
   - Mobile: button below summary, left-aligned
 - **Professional Timeline** section with staggered animation
 - **Education Timeline** section with staggered animation
+- **Notable Experiences & Achievements** card — a hardcoded card at the bottom of the experience page listing advisory roles, speaking appearances, publications, and other career highlights that don't fit the main timeline. Same visual style as timeline cards.
 - Timeline visual: vertical line with circular nodes (hidden on mobile)
 
 **Timeline Card Layout**:
@@ -185,31 +190,20 @@ public/
 
 Same schema as Professional. `role` field holds the degree/program name.
 
+### Existing Content
+
+The repository already contains real content that should be preserved:
+- **Professional**: 3 entries (Afresh, Rakuten, Mozign)
+- **Education**: 1 entry (Stanford University)
+- **Articles**: sample article(s) — replace or supplement with real posts
+
 ## Design System
 
 ### Colors
 
-Warm, professional palette with coral accents:
+Warm, professional palette: soft cream background, deep charcoal text, vibrant coral as the primary accent. Supporting tones include warm beige, peach, and professional navy. No dark mode — light mode only.
 
-```css
-/* Light mode */
---background: 35 25% 97%;         /* soft cream */
---foreground: 220 15% 15%;        /* deep charcoal */
---primary: 15 85% 60%;            /* vibrant coral */
---secondary: 25 30% 90%;          /* warm beige */
---muted: 30 20% 88%;
---muted-foreground: 220 10% 45%;
---radius: 0.75rem;
-
-/* Custom accents */
---accent-coral: 15 85% 60%;
---accent-peach: 25 70% 75%;
---accent-cream: 35 40% 85%;
---accent-blue: 200 50% 70%;
---accent-navy: 220 40% 25%;
-```
-
-Dark mode uses the same hue relationships with adjusted lightness values.
+Page heading titles use a lowercase style with a trailing period (e.g. "writing." "experience.") as a deliberate brand convention applied consistently across all pages.
 
 ### Typography
 
@@ -220,7 +214,7 @@ Dark mode uses the same hue relationships with adjusted lightness values.
 
 ### Icons
 
-All SVG icons are React components in `src/components/icons/`, exported from `index.ts` barrel file. Props: `{ className?: string }`. Use `client:load` in Astro files when needed.
+All SVG icons are React components in `src/components/icons/`, exported from an `index.ts` barrel file. Use `client:load` in Astro files when needed.
 
 Current icons: EmailIcon, LinkedInIcon, GitHubIcon, SubstackIcon, XIcon, MenuIcon, ToggleIcon, DownloadIcon
 
@@ -229,22 +223,8 @@ Current icons: EmailIcon, LinkedInIcon, GitHubIcon, SubstackIcon, XIcon, MenuIco
 - **Subtle and purposeful** — enhance UX, never distract
 - **Performant** — use `transform` and `opacity` only
 - **Accessible** — respect `prefers-reduced-motion` via Framer Motion
-- **Responsive direction**: desktop slides in from left (`x: -20`), mobile fades up (`y: 20`)
-
-### useIsMobile Hook
-
-`src/lib/useIsMobile.ts` uses `useSyncExternalStore` for synchronous viewport detection. Returns `initialIsMobile` which is captured on first client render and does not change on resize (prevents re-animation). Components use a `key` prop based on `initialIsMobile` to ensure correct animation plays after SSR hydration.
-
-### Standard Timing
-
-| Element | Duration | Delay | Easing |
-|---------|----------|-------|--------|
-| Page headers | 0.6s | none | easeOut |
-| About title + body | 0.5s | 0 / 0.15s | easeOut |
-| Timeline cards | 0.5s | staggered | easeOut |
-| Article cards | 0.5s | 0.2s + 0.2s×index | easeOut |
-| Position expand/contract | 0.3s | — | easeInOut |
-| Section titles (Professional / Education) | 0.5s | 0.2s / 0.4s | easeOut |
+- **Responsive direction**: desktop animations slide in from the left, mobile animations fade up
+- **No re-animation on resize** — entrance animations fire once on page load based on the viewport at that moment; resizing the window must not re-trigger them
 
 ## Performance Requirements
 
@@ -268,8 +248,7 @@ Current icons: EmailIcon, LinkedInIcon, GitHubIcon, SubstackIcon, XIcon, MenuIco
 - Unique title and description per page
 - Open Graph tags for social sharing
 - JSON-LD structured data for articles
-- Sitemap generation
-- RSS feed for blog posts
+- Sitemap and RSS feed are **not yet implemented** and are out of scope for now
 
 ## Accessibility Requirements
 
