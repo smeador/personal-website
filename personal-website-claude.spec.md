@@ -223,7 +223,7 @@ Current icons: EmailIcon, LinkedInIcon, GitHubIcon, SubstackIcon, XIcon, MenuIco
 - **Subtle and purposeful** — enhance UX, never distract
 - **Performant** — use `transform` and `opacity` only
 - **Accessible** — respect `prefers-reduced-motion` via Framer Motion
-- **Responsive direction**: desktop animations slide in from the left, mobile animations fade up
+- **Responsive** — animation direction and style should feel appropriate for the layout and screen size
 - **No re-animation on resize** — entrance animations fire once on page load based on the viewport at that moment; resizing the window must not re-trigger them
 
 ## Performance Requirements
