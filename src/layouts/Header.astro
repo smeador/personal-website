@@ -171,4 +171,18 @@ import MenuIcon from "../components/icons/MenuIcon.tsx";
       closeMenu();
     }
   });
+
+  // Reset mobile menu state after ViewTransitions navigation.
+  // The header persists across navigations (transition:persist), so
+  // isMenuOpen and inline styles carry over. Without this reset, the
+  // first button tap after navigating calls closeMenu() on an
+  // already-hidden menu, making the button appear broken.
+  document.addEventListener("astro:after-swap", () => {
+    if (mobileMenu) {
+      mobileMenu.classList.add("hidden");
+      mobileMenu.style.maxHeight = "";
+      mobileMenu.style.opacity = "";
+    }
+    isMenuOpen = false;
+  });
 </script>
