@@ -1,6 +1,5 @@
 ---
 const currentPath = Astro.url.pathname;
-import MenuIcon from "../components/icons/MenuIcon.tsx";
 ---
 
 <header
@@ -68,7 +67,18 @@ import MenuIcon from "../components/icons/MenuIcon.tsx";
       aria-label="Toggle mobile menu"
       style="color: inherit; appearance: none; background-color: transparent; -webkit-tap-highlight-color: transparent; -webkit-appearance: none;"
     >
-      <MenuIcon client:load />
+      <svg
+        class="w-5 h-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
     </button>
   </nav>
 
@@ -121,54 +131,62 @@ import MenuIcon from "../components/icons/MenuIcon.tsx";
 </header>
 
 <script>
-  // Mobile menu toggle with animation
-  const mobileMenuButton = document.getElementById("mobile-menu-button");
-  const mobileMenu = document.getElementById("mobile-menu");
-  let isMenuOpen = false;
+  function initMobileMenu() {
+    const button = document.getElementById("mobile-menu-button");
+    const menu = document.getElementById("mobile-menu");
+    if (!button || !menu) return;
 
-  function openMenu() {
-    if (mobileMenu) {
-      mobileMenu.classList.remove("hidden");
-      mobileMenu.style.maxHeight = "0px";
-      mobileMenu.style.opacity = "0";
+    // Always reset menu to closed state on navigation
+    menu.classList.add("hidden");
+    menu.style.maxHeight = "";
+    menu.style.opacity = "";
+
+    // Only attach listeners once per DOM element (handles transition:persist)
+    if (button.dataset.menuInit) return;
+    button.dataset.menuInit = "true";
+
+    function openMenu() {
+      menu.classList.remove("hidden");
+      menu.style.maxHeight = "0px";
+      menu.style.opacity = "0";
 
       // Force reflow
-      mobileMenu.offsetHeight;
+      menu.offsetHeight;
 
-      mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
-      mobileMenu.style.opacity = "1";
-      isMenuOpen = true;
+      menu.style.maxHeight = menu.scrollHeight + "px";
+      menu.style.opacity = "1";
+      button.dataset.menuOpen = "true";
     }
-  }
 
-  function closeMenu() {
-    if (mobileMenu) {
-      mobileMenu.style.maxHeight = "0px";
-      mobileMenu.style.opacity = "0";
+    function closeMenu() {
+      menu.style.maxHeight = "0px";
+      menu.style.opacity = "0";
 
       setTimeout(() => {
-        mobileMenu.classList.add("hidden");
-        isMenuOpen = false;
-      }, 300); // Match transition duration
+        menu.classList.add("hidden");
+        button.dataset.menuOpen = "false";
+      }, 300);
     }
+
+    button.addEventListener("click", () => {
+      if (button.dataset.menuOpen === "true") {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (
+        button.dataset.menuOpen === "true" &&
+        !button.contains(e.target as Node) &&
+        !menu.contains(e.target as Node)
+      ) {
+        closeMenu();
+      }
+    });
   }
 
-  mobileMenuButton?.addEventListener("click", () => {
-    if (isMenuOpen) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  });
-
-  // Close mobile menu when clicking outside
-  document.addEventListener("click", (e) => {
-    if (
-      isMenuOpen &&
-      !mobileMenuButton?.contains(e.target as Node) &&
-      !mobileMenu?.contains(e.target as Node)
-    ) {
-      closeMenu();
-    }
-  });
+  // Run on initial load and after every client-side navigation
+  document.addEventListener("astro:page-load", initMobileMenu);
 </script>
