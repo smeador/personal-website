@@ -19,8 +19,7 @@ export default function Welcome() {
             >
               writing
             </a>{" "}
-            on software engineering and leadership. My blog is still a
-            work-in-progress but more content is coming soon.
+            on software engineering and leadership. My blog is currently light on articles but more are coming soon.
           </p>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
             You can also{" "}

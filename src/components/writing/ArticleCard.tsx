@@ -18,7 +18,7 @@ export default function ArticleCard({ article, index }: ArticleCardProps) {
       initial={{ opacity: 0, x: initialIsMobile ? 0 : -20, y: initialIsMobile ? 20 : 0 }}
       animate={{ opacity: 1, x: 0, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 + index * 0.2, ease: "easeOut" }}
-      className="group"
+      className="group mb-6"
     >
       <a href={`/writing/${article.slug}`} className="block">
         <Card className="hover:shadow-lg transition-all duration-300">
