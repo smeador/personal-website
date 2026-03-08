@@ -1,0 +1,66 @@
+---
+title: "How I Built This Website"
+date: 2026-03-01T12:00:00
+excerpt: "My experience building a modern personal website using AI-assisted development, spec-driven workflows, and the latest static site technologies."
+tags: ["Website", "AI", "Development", "Astro"]
+readingTime: "6 min"
+featured: true
+---
+
+I've been meaning to create my own personal website for years now, and I finally had the opportunity to pick this up as a hobby project. This was a great chance to learn how to build a fast static website using the latest best practices and technologies. I have extensive web development experience, but it has been a while since I'd built a static site from scratch.
+
+The core requirements I was hoping to achieve:
+- Fast static site generation and render performance
+- Automatic and fast deployments
+- Posts and writing in-code and not using an extra CMS layer
+- Support for simple and flexible animation
+- Easy dependency management and low maintenance
+
+## Development Process
+
+I built this with AI (of course) and partnered with Claude Code to help make technical decisions and used it to write 95% of the code. I was also interested in exploring spec-driven development workflows and the process of evolving the spec over time. So all requirements, technical decisions, and UI/stylistic choices would be captured in a `SPEC.md` file.
+
+In addition to working locally, I also set up Claude Code on the cloud. This was a truly delightful experience to be able to send commands via the mobile app and then get those changes automatically deployed without opening my laptop.
+
+## Technical Decisions
+
+Without getting into all the technical details, here is an overview of the major technical decisions that ended up working well. Claude drew from best practices and gave me this guidance with only a small amount of refinement required.
+
+- **Astro** for the main static site and content generation framework. This was a clear choice as Astro has become a very popular framework for static sites. I can see why after using it because the code structure was easy to follow and the rendering model was intuitive. The Astro islands feature is great because developers can choose when to load React/JavaScript for more interactive content, which improves performance on pages that don't need it.
+- **Tailwind** for CSS was also an obvious choice as a now industry standard for CSS. This provided some awesome utility functions that Claude was able to just run with without adding too much CSS code.
+- **shadcn/ui + Radix UI** for the component library. This provides a lot of great UI building blocks out of the box. With that said, I opted to copy these components into the library instead of creating a dependency on these frameworks.
+- **MDX** for long-form content (articles, bio, experience). I didn't want to mess around with a CMS and this an easy way to write content published in Git. And this approach makes it dead simple for Claude to take a Notion doc and convert it to MDX format.
+- **Vercel** for hosting and deployment. This was so incredibly easy and delightful to use, and deployments are super fast. Hat's off to Vercel for making hosting and deployment so trivial.
+
+## Design and Styling
+
+I did some research on various personal websites using [Dribbble](https://dribbble.com/search/personal-website) and other aggregators, scanning them for themes that I liked. This process actually took a lot longer than I expected as many designs emphasize a dramatic style which I wasn't going for here.
+
+<div class="inline-images" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: -1.0rem auto 0.0rem;">
+  <img src="/images/articles/article-design-fun.png" alt="Fun design inspiration" style="width: 100%; height: auto; border-radius: 0.5rem; border: 1px solid hsl(var(--border));" />
+  <img src="/images/articles/article-design-edgy.png" alt="Edgy design inspiration" style="width: 100%; height: auto; border-radius: 0.5rem; border: 1px solid hsl(var(--border));" />
+</div>
+<p style="text-align: center; font-style: italic; color: hsl(var(--muted-foreground)); margin-top: 0; margin-bottom: 2rem;">Website theme inspiration</p>
+
+The magic happened when I combined a few screenshots and a "look and feel" prompt and fed those into Claude. I asked it to come up with a design system, fonts, and color palette for me. I tweaked what it produced a little bit but it was an excellent start to evolve from. It even added a little flair on text hover which I decided to keep.
+
+On the other hand, the Austin skyline was fairly unique and that came from my own vision. This required my own customization to get the layout and animation right.
+
+## Getting Hands On
+
+For the most part, development was smooth working with Claude and I was impressed with its capabilities. However, there were some areas where I needed to get more hands on:
+
+- **Over-eager AI** was definitely a challenge at times, as it would construct pages with elements that weren't specified. I also found that generalizing components across sections could have been better, and instead it opted to create new components when code could have been shared.
+- **Details and animations** were important to me, and after the initial pass I noticed they weren't quite right with the timing. I might have gone a little overboard with the animations, but that's my personality and I think they add a nice touch.
+- **Testing and fixing glitches** was another area that required a lot of back and forth. I did set up Playwright for automated testing but I found the agent didn't catch small visual bugs. There was one header flashing bug that took almost an hour back and forth to fix!
+- **Updating the spec**, despite my rule to do so, was something that was done spottily at best. I usually had to re-prompt Claude to update the spec, and eventually made sure to do it as part of the commit and push process. While the spec became more of a post-hoc artifact rather than driving further implementation, understanding the spec evolution process was an important learning for me.
+
+## On Writing
+
+Writing the content for the website was the single biggest use of my time, as I also had not written my bio or experience up until this point. I did pair with Claude on content review and editing, but created all of the initial drafts myself. This is actually one of my core values: when you see something written from me, it should be from me. Yes, I use AI to help edit and form ideas, but it is important for me to write with my own voice and not outsource that to AI.
+
+## Summary
+
+Overall, I was very impressed with Claude and really loved this process of creating this static site with it. It demonstrated great decision making, and beyond that, some good UI sensibilities and taste.
+
+The spec-driven development required a bit more hands on prompting to update, but I was still committed to the goal of producing a comprehensive spec. With that in hand, an agent can quickly rebuild to the same standards, which gives tremendous flexibility for "starting over" or building new static sites in the future.

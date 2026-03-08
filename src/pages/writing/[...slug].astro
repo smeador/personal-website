@@ -25,17 +25,14 @@ const { title, date, excerpt } = article.data;
           {title}
         </h1>
         
-        <div class="text-muted-foreground text-sm space-y-2">
-          <time datetime={date.toISOString()}>
-            {date.toLocaleDateString('en-US', { 
-              year: 'numeric', 
-              month: 'long', 
-              day: 'numeric' 
+        <div class="text-muted-foreground">
+          <time datetime={date.toISOString()} class="text-base">
+            {date.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
             })}
           </time>
-          <div class="text-muted-foreground">
-            by Sean Meador
-          </div>
         </div>
       </header>
 
@@ -47,7 +44,7 @@ const { title, date, excerpt } = article.data;
   </article>
 </BaseLayout>
 
-<style>
+<style is:global>
   /* Custom prose styling to match our design system */
   .prose {
     color: hsl(var(--foreground));
@@ -74,8 +71,15 @@ const { title, date, excerpt } = article.data;
   .prose code {
     background-color: hsl(var(--muted));
     color: hsl(var(--foreground));
-    padding: 0.125rem 0.25rem;
+    padding: 0.2rem 0.4rem;
     border-radius: 0.25rem;
+    font-size: 0.9em;
+    font-weight: 500;
+  }
+
+  .prose code::before,
+  .prose code::after {
+    content: none;
   }
   
   .prose pre {
@@ -85,5 +89,15 @@ const { title, date, excerpt } = article.data;
   
   .prose pre code {
     background-color: transparent;
+  }
+
+  .prose .inline-images {
+    max-width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .prose .inline-images {
+      max-width: 80%;
+    }
   }
 </style>
