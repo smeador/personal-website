@@ -13,7 +13,7 @@ export default function Connect() {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+        transition={{ duration: 0.4, delay: 0.35, ease: "easeOut" }}
         className="mt-12"
       >
         <h2 className="section-title mb-8">connect.</h2>

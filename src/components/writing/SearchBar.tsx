@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 
 interface SearchBarProps {
   onSearchResults?: (results: any[]) => void;
@@ -102,12 +101,7 @@ export default function SearchBar({ onSearchResults }: SearchBarProps) {
   }, [query]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="sticky top-16 z-40 bg-background/80 backdrop-blur-md border-b border-border"
-    >
+    <div className="sticky top-16 z-40 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 py-4">
         <div className="max-w-2xl mx-auto">
           <div className="relative">
@@ -141,16 +135,12 @@ export default function SearchBar({ onSearchResults }: SearchBarProps) {
           </div>
           
           {resultCount !== null && (
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-sm text-muted-foreground mt-2"
-            >
+            <p className="text-sm text-muted-foreground mt-2">
               {resultCount === 0 ? 'No articles found' : `${resultCount} article${resultCount === 1 ? '' : 's'} found`}
-            </motion.p>
+            </p>
           )}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

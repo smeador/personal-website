@@ -1,14 +1,8 @@
-import { motion } from "framer-motion";
 import { DownloadIcon } from "../icons";
 
 export default function ExperienceHeader() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="mt-2 md:mt-8"
-    >
+    <div className="mt-2 md:mt-8">
       {/* Title and Desktop Resume Button */}
       <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4 md:mb-6">
         <div className="flex-1">
@@ -44,6 +38,6 @@ export default function ExperienceHeader() {
           Resume
         </a>
       </div>
-    </motion.div>
+    </div>
   );
 }

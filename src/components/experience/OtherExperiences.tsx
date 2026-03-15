@@ -1,19 +1,15 @@
-import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useIsMobile } from "@/lib/useIsMobile";
 
 interface OtherExperiencesProps {
   animationDelay?: number;
 }
 
-export default function OtherExperiences({ animationDelay = 0 }: OtherExperiencesProps) {
-  const { initialIsMobile } = useIsMobile();
-
+export default function OtherExperiences({ animationDelay: _animationDelay = 0 }: OtherExperiencesProps) {
   const linkClass = "underline decoration-muted-foreground/50 hover:text-primary hover:decoration-primary transition-colors";
 
   const experiences = [
     <>
-      Technical advisor to multiple early-stage startups throughout 2024 and 2025: 
+      Technical advisor to multiple early-stage startups throughout 2024 and 2025:
       The Weet, a finance app which aggregates expert stock predictions;
       Proxi, a social networking app for creating warm intros.
     </>,
@@ -58,18 +54,8 @@ export default function OtherExperiences({ animationDelay = 0 }: OtherExperience
     <div className="relative">
       {/* Timeline line - hidden on mobile */}
       <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-border hidden md:block"></div>
-      
-      <motion.div
-        key={initialIsMobile ? "mobile" : "desktop"}
-        initial={{ opacity: 0, x: initialIsMobile ? 0 : -20, y: initialIsMobile ? 20 : 0 }}
-        animate={{ opacity: 1, x: 0, y: 0 }}
-        transition={{
-          duration: 0.5,
-          delay: animationDelay,
-          ease: "easeOut",
-        }}
-        className="relative pl-0 md:pl-20"
-      >
+
+      <div className="relative pl-0 md:pl-20">
         {/* Timeline node - hidden on mobile */}
         <div className="absolute left-6 top-6 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg hidden md:block"></div>
 
@@ -92,7 +78,7 @@ export default function OtherExperiences({ animationDelay = 0 }: OtherExperience
             </ul>
           </CardContent>
         </Card>
-      </motion.div>
+      </div>
     </div>
   );
 }

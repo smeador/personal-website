@@ -1,23 +1,11 @@
-import { motion } from "framer-motion";
-
 export default function AboutSection() {
   return (
     <div className="mt-2 md:mt-8">
-      <motion.h1
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="section-title mb-6 md:mb-8"
-      >
+      <h1 className="section-title mb-6 md:mb-8">
         about.
-      </motion.h1>
+      </h1>
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-        className="prose prose-lg max-w-none"
-      >
+      <div className="prose prose-lg max-w-none">
         <div className="space-y-6 text-muted-foreground leading-relaxed">
           <p>
             I'm a mission-driven engineering leader with over 15 years of
@@ -73,7 +61,7 @@ export default function AboutSection() {
             for more details about my professional journey.
           </p>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
