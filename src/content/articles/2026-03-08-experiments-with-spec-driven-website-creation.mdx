@@ -9,15 +9,15 @@ featured: true
 
 In my last article, "[How I Built This Website](https://www.meador.me/writing/2026-03-01-how-i-built-this-website)," I wrote about how I maintained a [specification file](https://github.com/smeador/personal-website/blob/main/docs/personal-website.spec.md) as I was developing the website. The concept of "spec-driven development" has definitely grown in interest over the past 6 months. My first introduction to this idea came from [Sean Grove's talk at AI Engineer's World Fair](https://www.youtube.com/watch?v=8rABwKRsec4) last summer, which is worth a watch. Since then, the idea has blossomed into [spec development libraries](https://github.com/github/spec-kit) and even [post-code ideations](https://www.dbreunig.com/2026/01/08/a-software-library-with-no-code.html) where the spec is all you need. While I'm not sold on the most extreme versions of this (yet), most of us have been at least writing specification and requirement files in markdown alongside our coding agents, especially for more complex tasks.
 
-This website was no different, albeit fairly simple in terms of complexity. However, this simplicity also makes testing the validity of a rebuild from the specification quite straightforward using a visual scan of the web pages. So I wanted to put the spec to use and see what building a fresh clone would look like!
+This website was no different, albeit a fairly simple use case. However, this simplicity also makes testing the validity of a rebuild from the spec quite straightforward using a visual scan of the web pages. So I wanted to put the spec to use and see what building a fresh clone would look like!
 
 ## The Experiment
 
-I decided to make this a bake-off between Claude Opus 4.6 and GPT-5.3-Codex, the latest state-of-the-art models that have taken software engineering by storm. I wanted to see how these different models compared, primarily how they follow instructions, but also if they "read between the lines" and pull in their own judgement and taste.
+I decided to make this a bake-off between Claude Opus 4.6 and GPT-5.3-Codex, the latest state-of-the-art models that have taken software engineering by storm. I wanted to see how these different models compared, primarily how they follow instructions, but also if they "read between the lines" and pull in their own judgment and taste.
 
 I didn't expect perfect parity because the spec didn't have every single detail about the website spelled out, which I frankly think is too detailed and blurs the line between spec and code. But I did expect general parity and a fully functional website that satisfies the requirements and uses the technologies specified.
 
-I created a fresh repo for each agent with the website content pulled in. I then created a one-shot prompt to build the website again from the spec. Most web development tool use was permitted, and I gave both agents access to Playwright so they could run and test the website. I then fired off the prompts and let them run. Finally, I created a skill for snapshotting the full set of pages to have a visual record of what they produced.
+I created a fresh repo for each agent with the website content pulled in. I then created a one-shot prompt to build the website again from the spec. Web development tool use was permitted, and I gave both agents access to Playwright so they could run and test the website. I then fired off the prompts and let them run. Finally, I created a skill for snapshotting the full set of pages to have a visual record of what they produced.
 
 > Please review the spec in this folder and make a fully functional personal website based on the specification. Follow the specification, but use your judgment to fill in details based on the requirements and acceptance criteria. Test your changes and make sure all the acceptance criteria are met using the Playwright functionality.
 
@@ -27,19 +27,19 @@ Both runs completed in &lt;30 mins, and most of the time was spent on debugging 
 
 ## Codex Results
 
-Codex finished first. I was excited to see what it produced, and then I opened up the local page and saw this...
+Codex finished first. I was excited to see what it produced, and then I opened up the local page and saw this…
 
 <div class="inline-images" style="display: grid; grid-template-columns: 1fr; margin: -1rem auto 0;">
   <img src="/images/articles/article-codex-clone-1.png" alt="Codex initial broken result" style="width: 100%; height: auto; border-radius: 0.5rem; border: 1px solid hsl(var(--border));" />
 </div>
 
-Well that's... not quite right. I confirmed that Playwright and the tests ran, and Codex was confident it had met the functional requirements. So this result was definitely underwhelming. However, I didn't give it explicit instructions to be persistent and visually verify the UI. Clearly there was some issue with layout or CSS imports, so I prompted it to do a visual review and it did admirably from that point on. It traced the main rendering issue to a missing `shadcn/ui` import. It fixed the issue and verified functionality, and the results this time were much better:
+Well that's… not quite right 😳. I confirmed that Playwright and the tests ran, and Codex was confident it had met the functional requirements. So this result was definitely underwhelming. However, I didn't give it explicit instructions to be persistent and visually verify the UI. Clearly there was some issue with layout or CSS imports, so I prompted it to do a visual review and it did admirably from that point on. It traced the main rendering issue to a missing `shadcn/ui` import. It fixed the issue and verified functionality, and the results this time were much better:
 
 <div class="inline-images" style="display: grid; grid-template-columns: 1fr; margin: -1rem auto 0;">
   <img src="/images/articles/article-codex-clone-2.png" alt="Codex fixed result after visual review" style="width: 100%; height: auto; border-radius: 0.5rem; border: 1px solid hsl(var(--border));" />
 </div>
 
-Some of the details, such as shadows and outlines still need some work, and it also chose to use card components where I would have opted for a regular text block. But the functionality was fine. Examining the code, it used the correct frameworks and the code and content layout was fine.
+Some of the details, such as shadows and outlines still need some work, and it also chose to use card components where I would have opted for a regular text block. But the functionality was fine including complex elements like the experience timeline. Examining the code, it used the correct frameworks and the code layout was very similar (based on Astro standards).
 
 ## Claude Results
 
@@ -51,11 +51,12 @@ Claude took a bit longer to run, partly because of the extra asks for permission
 
 Wow! This was spectacular. This result was the spitting image of my current website, and even some of the animations were identical (such as the circular expansion of my profile image). I went so far as to ask Claude if it used prior history when creating this, out of concern it might have been cheating from previous sessions. It verified that the context was completely isolated and no shared memory was used.
 
-In hindsight, it might be less of a surprise that I got more similar results from Claude since I originally used Claude to build the website. And Codex ended up with a pretty similar layout which was well-defined in the spec. However, getting this so well implemented after the first shot was still impressive.
+In hindsight, it might be less of a surprise that I got better results from Claude since I originally used Claude to build the website. And Codex also ended up with a roughly similar layout which was well-defined in the spec. However, getting to this point on the first shot was impressive.
 
 ## Back to Basics
 
-The first experiment was quite successful and got me thinking — for a simple personal website like this, what if I skipped the spec and the design phase altogether, and rather just provided a prompt with requirements? When I first started the website, it was before we had these latest and most capable models, and so the planning phase was especially helpful for making decisions and evolving the requirements (and also for my learning). With these newer models and the requirements in hand, I was curious to see where the models took the website on their own. How would they express taste, style, and judgement with very little guidance?
+The first experiment was quite successful and got me thinking — for a simple personal website like this, what if I skipped the spec and the design phase altogether, and rather just provided a prompt with requirements? When I first started the website, the planning phase was especially helpful for making decisions and evolving the requirements (and also for my learning). Since then, even more capable models have come out, and so I was curious to see where these models took the website on their own. How would they express taste, style, and judgment with very little guidance?
+
 
 I created a new fresh clone of the repo and developed a much [simplified version of the spec](https://github.com/smeador/personal-website/blob/main/docs/website-prompt.md) which was more like a prompt with basic requirements. I left the existing images and content in place, except I swapped in a placeholder profile image to make it more generic and not detract from the UI elements.
 
@@ -71,15 +72,15 @@ I created a new fresh clone of the repo and developed a much [simplified version
   <img src="/images/articles/article-claude-fresh-1.png" alt="Claude fresh build result" style="width: 100%; height: auto; border-radius: 0.5rem; border: 1px solid hsl(var(--border));" />
 </div>
 
-In this case, Codex was more faithful to the original design, knowing to place the Austin skyline on the home page whereas Claude ignored that element altogether. However, *visually*, I feel Claude's version looks better and has better spacing and flow. Codex introduced an awkward outline around the skyline which does not fit that image element well.
+In this case, Codex was more faithful to the original design, knowing to place the Austin skyline on the home page whereas Claude ignored that element altogether. However, *visually*, I feel Claude's version looks cleaner and has better spacing and flow. Codex introduced an awkward outline around the skyline which does not fit that image element well.
 
 Looking at the code, Claude re-engineered many of the same technical design choices from the original website — using Astro, Tailwind, and similar component libraries. Codex decided to go in a completely different direction and developed a *zero-dependency* version of the website, only using native JavaScript and CSS and using its own bundler.
 
-I give a nod to Codex for the originality and confidence to go with zero dependencies (even though this wasn't specified), although for a production website that's easy to maintain, relying on standard frameworks would have been my first choice. This was an interesting divergence and I wonder if Codex was specifically reinforced to minimize unnecessary dependencies unless specified.
+I give a nod to Codex for the originality and confidence to go with zero dependencies, even though that wasn't specified and relying on standard frameworks would have been my first choice. This was an interesting divergence and I wonder if Codex was specifically reinforced to minimize unnecessary dependencies unless specified.
 
 Claude also takes the trophy for writing the in-line content on the pages that I didn't copy from the original source. I copied the MDX files and my resume, but nothing else. It did a really great job with the copywriting, so much so that I might even steal some of its phrasing for the main website!
 
-## Pushing the Design for Fun
+## Pushing the Design
 
 Finally, I wanted to see where these models would take things if I told them to focus on building an innovative website that pushed the boundaries of website development. I asked them to do independent research and show me something novel. I went through two iterations of this hoping to see something really interesting, and I've included the results here for you to judge for yourself.
 
@@ -95,12 +96,12 @@ Finally, I wanted to see where these models would take things if I told them to 
 </div>
 <p style="text-align: center; font-style: italic; color: hsl(var(--muted-foreground)); margin-top: 0; margin-bottom: 2rem;">Claude #1 and Claude #2</p>
 
-In my opinion, Claude once again wins out by offering a bit more novelty with the options presented, as the two versions that Codex presented didn't offer much variation. Interestingly, 3/4 of the designs introduced a horizontal scrolling "ticker-like" experience, which is *clearly* a cutting-edge design choice.
+In my opinion, Claude once again wins out by offering more novelty with the options presented, as the two versions that Codex presented didn't offer much variation. Interestingly, 3/4 of the designs introduced a horizontal scrolling "ticker-like" experience, which is *clearly* a cutting-edge design choice.
 
 Ultimately, nothing here was too groundbreaking and I wouldn't personally pick these designs for my own website. But it's fun to see what they came up with and how these models can experiment with generating novel designs without much input.
 
 ## Summary
 
-Spec-driven development works extremely well in co-creating software with an agent and is especially useful when you have strong opinions about design choices or a complex set of requirements. In this example, a short spec artifact encoded the details that mattered, and while the visuals contained minor issues, the end result was quite outstanding with minimal loss.
+Spec-driven development works extremely well in co-creating software with an agent and is especially useful when you have strong opinions about design choices or a complex set of requirements. In this example, a short spec artifact encoded the details that mattered, and while the visuals contained minor issues, the end result was quite outstanding with minimal loss in functionality.
 
-At the same time, agents are now significantly better at reflecting their own design taste and judgement, and in the case of this website, they were able to create a solid implementation from a single prompt and raw content. So over-specifying could be wasted effort and constrain agent creativity or the adoption of newer best practices.
+At the same time, agents are now significantly better at reflecting their own design taste and judgment, and in the case of this website, they were able to create a solid implementation from a single prompt and raw content. So over-specifying could be wasted effort and constrain agent creativity or the adoption of newer best practices.
