@@ -40,9 +40,7 @@ SUMMARY = (
     "across consumer and enterprise software. I’ve grown engineering organizations from "
     "first hire to 30+ engineers, developing managers and leading cross-functional teams. I "
     "bring a strong product mindset, integrating across the stack to turn data and ML "
-    "capabilities into thoughtfully designed customer-facing solutions. My recent focus is "
-    "applying AI to real-world enterprise problems, with production systems that have reduced "
-    "food waste in grocery by over 200M pounds."
+    "capabilities into thoughtfully designed customer-facing solutions."
 )
 
 # Each company: name plus one entry per role held there, newest first.
@@ -223,8 +221,9 @@ PROJECTS = [
 ]
 
 
-# Spacing is tuned so the resume fills exactly two pages. Adding content may
-# require trimming elsewhere — check the page count after regenerating.
+# The resume is meant to fit two pages, with all of the Afresh roles on page
+# one. There is only ~4pt of slack at the bottom of page one, so check the
+# page breaks after adding content.
 def build_styles():
     return {
         "name": ParagraphStyle(
@@ -258,7 +257,7 @@ def build_styles():
             fontSize=12,
             leading=15,
             textColor=INK,
-            spaceBefore=5,
+            spaceBefore=6,
         ),
         "role": ParagraphStyle(
             "role",
@@ -266,7 +265,7 @@ def build_styles():
             fontSize=10,
             leading=12,
             textColor=INK,
-            spaceBefore=4,
+            spaceBefore=5,
             spaceAfter=1,
         ),
         "meta": ParagraphStyle(
@@ -281,7 +280,7 @@ def build_styles():
             "body",
             fontName="Helvetica",
             fontSize=9.5,
-            leading=12.5,
+            leading=13,
             textColor=INK,
             spaceBefore=2,
             spaceAfter=2,
@@ -290,11 +289,11 @@ def build_styles():
             "bullet",
             fontName="Helvetica",
             fontSize=9.5,
-            leading=12.5,
+            leading=13,
             textColor=INK,
             leftIndent=12,
-            spaceBefore=1,
-            spaceAfter=1,
+            spaceBefore=1.5,
+            spaceAfter=1.5,
         ),
         "edu": ParagraphStyle(
             "edu",
@@ -376,12 +375,14 @@ def main():
     doc = SimpleDocTemplate(
         str(args.out),
         pagesize=letter,
-        # Frames add 6pt of padding on each side, so these land the content
-        # box at 49.2pt from the left and 750pt from the bottom.
-        leftMargin=43.2,
-        rightMargin=43.2,
-        topMargin=36,
-        bottomMargin=36,
+        # Frames add 6pt of padding on each side, so the content box sits
+        # 42pt (0.58in) from the sides and 30pt (0.42in) from the top and
+        # bottom. These margins are what keep the whole Afresh tenure on
+        # page one; widening them pushes its last role onto page two.
+        leftMargin=36,
+        rightMargin=36,
+        topMargin=24,
+        bottomMargin=24,
         title=f"Resume — {NAME}",
         author=NAME,
     )
