@@ -6,7 +6,7 @@ A modern, performant personal website showcasing writing, professional experienc
 
 ## Technical Stack
 
-- **Astro 5** - Static site generator with islands architecture
+- **Astro 7** - Static site generator with islands architecture (Content Layer API, Satteri Markdown pipeline)
 - **TypeScript** - Strict mode enabled
 - **MDX** - Content management for articles and timeline items
 - **React 19** - Interactive component islands
@@ -39,8 +39,8 @@ src/
 │   ├── about/                   # AboutSection
 │   ├── writing/                 # ArticleCard, WritingHeader, SearchBar
 │   └── experience/              # Timeline, ExperienceHeader, SectionTitle, OtherExperiences
+├── content.config.ts            # Collection schemas (Content Layer API)
 ├── content/
-│   ├── config.ts                # Collection schemas
 │   ├── articles/                # MDX blog posts
 │   ├── professional/            # MDX professional experience entries
 │   └── education/               # MDX education entries
