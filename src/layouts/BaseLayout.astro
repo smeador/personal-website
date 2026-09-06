@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import Header from "./Header.astro";
 import Footer from "./Footer.astro";
 import "../styles/global.css";
@@ -59,7 +59,7 @@ const {
     <meta name="twitter:image" content="/og-image.png" />
 
     <!-- Global Styles are now imported in the frontmatter -->
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body>
     <main class="min-h-screen bg-background" transition:animate="none">

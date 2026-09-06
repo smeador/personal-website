@@ -11,7 +11,7 @@ export default function ArticleCard({ article, index: _index }: ArticleCardProps
 
   return (
     <article className="group mb-6">
-      <a href={`/writing/${article.slug}`} className="block">
+      <a href={`/writing/${article.id}`} className="block">
         <Card className="hover:shadow-lg transition-all duration-300">
           <CardHeader>
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 md:gap-4">
