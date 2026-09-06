@@ -5,7 +5,7 @@ Build a personal website for **Sean Meador**, an engineering leader based in Aus
 - **Home**: Brief intro, who Sean is and what he does, ways to connect (email, LinkedIn, GitHub, Substack, X/Twitter)
 - **About**: Long-form biography covering personal background, engineering philosophy, and interests
 - **Writing**: A listing of articles and individual article pages with full MDX/markdown content
-- **Experience**: Professional timeline (Afresh, Rakuten, Mozign) and education (Stanford University), each with organization details, multiple roles, dates, and descriptions. Also a section for notable achievements/advisory roles/speaking that don't fit the timeline.
+- **Experience**: Professional timeline (Cherry, Afresh, Rakuten, Mozign) and education (Stanford University), each with organization details, multiple roles, dates, and descriptions. Also a section for notable achievements/advisory roles/speaking that don't fit the timeline.
 
 ## Core requirements
 
