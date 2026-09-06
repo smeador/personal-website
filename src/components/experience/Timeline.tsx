@@ -97,11 +97,11 @@ export default function Timeline({
   const renderTimelineCard = (item: TimelineItem) => {
     const itemData = item.data;
     const positions = itemData.positions;
-    const isExpanded = expandedItems.includes(item.slug);
+    const isExpanded = expandedItems.includes(item.id);
 
     return (
       <div
-        key={item.slug}
+        key={item.id}
         className="relative pl-0 md:pl-20"
       >
         {/* Timeline node - hidden on mobile */}
@@ -109,7 +109,7 @@ export default function Timeline({
 
         <Card
           className="md:hover:shadow-lg transition-all duration-300 cursor-pointer"
-          onClick={() => toggleExpanded(item.slug)}
+          onClick={() => toggleExpanded(item.id)}
         >
           <CardHeader>
             <div className="flex items-start justify-between gap-4">
