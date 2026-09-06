@@ -37,10 +37,14 @@ export default function AboutSection() {
           </p>
 
           <p>
-            I recently joined Cherry, a healthcare financing platform, as an
-            Engineering Manager. I lead a new product development team in our
-            Provider org, building zero-to-one products that help providers
-            grow their practices and thrive.
+            I recently joined Cherry as an Engineering Manager, where I lead a
+            new product development team building zero-to-one products for the
+            providers we serve. Cherry is transforming finance for medical and
+            wellness practices by giving patients more flexible and friendly
+            payment options. That mission resonates with me personally — my
+            wife is a wellness physician, and I've seen firsthand how much
+            financial flexibility matters when someone is deciding to invest
+            in their health.
           </p>
 
           <p>
