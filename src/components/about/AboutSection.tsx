@@ -29,11 +29,18 @@ export default function AboutSection() {
           <p>
             I love the process of diving deep into a problem and collaborating
             with Product and customers to create truly useful solutions. I'm
-            currently focused on applying AI in enterprise settings, using
+            especially drawn to applying AI in enterprise settings, using
             thoughtfully designed interfaces and domain expertise to solve
-            real-world problems. With my work at Afresh, this has resulted in
-            up to 25% shrink savings for retailers and over 200 million pounds
-            of food waste prevention in total.
+            real-world problems. My work at Afresh resulted in up to 25% shrink
+            savings for retailers and over 200 million pounds of food waste
+            prevention in total.
+          </p>
+
+          <p>
+            I recently joined Cherry, a healthcare financing platform, as an
+            Engineering Manager. I lead a new product development team in our
+            Provider org, building zero-to-one products that help providers
+            grow their practices and thrive.
           </p>
 
           <p>

@@ -193,7 +193,7 @@ Same schema as Professional. `role` field holds the degree/program name.
 ### Existing Content
 
 The repository already contains real content that should be preserved:
-- **Professional**: 3 entries (Afresh, Rakuten, Mozign)
+- **Professional**: 4 entries (Cherry, Afresh, Rakuten, Mozign)
 - **Education**: 1 entry (Stanford University)
 - **Articles**: sample article(s) — replace or supplement with real posts
 
